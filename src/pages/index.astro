@@ -1,0 +1,36 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Navbar from "../components/Navbar";
+import OceanScene from "../components/OceanScene";
+import HeroSection from "../components/HeroSection";
+import AboutSection from "../components/AboutSection";
+import ResearchSection from "../components/ResearchSection";
+import PublicationsSection from "../components/PublicationsSection";
+import SoftwareSection from "../components/SoftwareSection";
+import AwardsSection from "../components/AwardsSection";
+import ContactSection from "../components/ContactSection";
+import BlogSection from "../components/BlogSection.astro";
+import Footer from "../components/Footer";
+---
+
+<Layout>
+  <Navbar client:load />
+
+  <!-- Hero with 3D Ocean Background -->
+  <div class="relative">
+    <OceanScene client:load />
+    <HeroSection client:load />
+  </div>
+
+  <main>
+    <AboutSection client:visible />
+    <ResearchSection client:visible />
+    <PublicationsSection client:visible />
+    <SoftwareSection client:visible />
+    <AwardsSection client:visible />
+    <BlogSection />
+    <ContactSection client:visible />
+  </main>
+
+  <Footer client:load />
+</Layout>

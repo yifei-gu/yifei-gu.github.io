@@ -1,0 +1,86 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Navbar from "../../components/Navbar";
+import Footer from "../../components/Footer";
+import { getCollection } from "astro:content";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("blog");
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: post,
+  }));
+}
+
+const post = Astro.props;
+const { Content } = await post.render();
+---
+
+<Layout
+  title={`${post.data.title} | Yifei Gu`}
+  description={post.data.description}
+>
+  <Navbar client:load />
+
+  <main class="pt-28 pb-24 px-4">
+    <article class="max-w-3xl mx-auto">
+      <a
+        href="/blog"
+        class="inline-flex items-center gap-1 text-sm text-ocean-500 hover:text-ocean-600 mb-8 group"
+      >
+        <svg
+          class="w-4 h-4 group-hover:-translate-x-1 transition-transform"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M15 19l-7-7 7-7"></path>
+        </svg>
+        Back to Blog
+      </a>
+
+      <header class="mb-10">
+        <div class="flex items-center gap-3 mb-4">
+          <time
+            class="text-xs font-mono text-ocean-500 px-2 py-0.5 rounded bg-ocean-500/10"
+          >
+            {
+              post.data.date.toLocaleDateString("en-US", {
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+              })
+            }
+          </time>
+          {
+            post.data.tags.map((tag: string) => (
+              <span class="text-xs px-2 py-0.5 rounded-full bg-deep-200 dark:bg-deep-700 text-deep-600 dark:text-deep-300">
+                {tag}
+              </span>
+            ))
+          }
+        </div>
+        <h1
+          class="text-3xl sm:text-4xl font-bold text-deep-800 dark:text-white leading-tight"
+        >
+          {post.data.title}
+        </h1>
+        <p class="text-lg text-deep-600 dark:text-deep-300 mt-3">
+          {post.data.description}
+        </p>
+      </header>
+
+      <div
+        class="prose prose-lg dark:prose-invert prose-headings:text-deep-800 dark:prose-headings:text-white prose-a:text-ocean-500 prose-code:text-ocean-500 prose-pre:bg-deep-900 prose-pre:border prose-pre:border-deep-700 max-w-none"
+      >
+        <Content />
+      </div>
+    </article>
+  </main>
+
+  <Footer client:load />
+</Layout>

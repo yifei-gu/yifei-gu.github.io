@@ -1,0 +1,92 @@
+[
+    {
+        "name": "HSC3D",
+        "description": "A Python package to quantify three-dimensional habitat structural complexity from 3D point clouds.",
+        "tags": [
+            "Python",
+            "3D",
+            "Ecology"
+        ],
+        "github": "https://github.com/your-username/HSC3D",
+        "paper": true
+    },
+    {
+        "name": "Ant-observer",
+        "description": "Automatic acquisition and autonomous analyses of individual ant species abundance and interactions using computer vision.",
+        "tags": [
+            "Python",
+            "Computer Vision",
+            "Deep Learning"
+        ],
+        "github": "https://github.com/your-username/Ant-observer",
+        "paper": true
+    },
+    {
+        "name": "holothurian-YOLOv8",
+        "description": "Subtidal detection of holothurians in turbid marine habitats using photodetection and deep learning.",
+        "tags": [
+            "Python",
+            "YOLOv8",
+            "Marine"
+        ],
+        "github": "https://github.com/your-username/holothurian-YOLOv8",
+        "paper": true
+    },
+    {
+        "name": "CardiacDP",
+        "description": "Automated heart rate data analysis with autocorrelation function (ACF) and a genetic algorithm framework.",
+        "tags": [
+            "Python",
+            "Signal Processing",
+            "Algorithm"
+        ],
+        "github": "https://github.com/your-username/CardiacDP",
+        "paper": true
+    },
+    {
+        "name": "CNN-SS-mussel",
+        "description": "AI-based semantic segmentation of intertidal mussel beds using convolutional neural networks.",
+        "tags": [
+            "Python",
+            "Deep Learning",
+            "Segmentation"
+        ],
+        "github": "https://github.com/your-username/CNN-SS-mussel",
+        "paper": true
+    },
+    {
+        "name": "Polygon Measurement Tool",
+        "description": "A Python package for measuring polygons in YOLO format annotation files with UI features and reference scale measurement.",
+        "tags": [
+            "Python",
+            "YOLO",
+            "UI Tool"
+        ],
+        "github": "https://github.com/your-username/polygon-measurement-tool",
+        "paper": false
+    },
+    {
+        "name": "BTFr",
+        "description": "Run Bayesian Transfer Function to reconstruct past environmental conditions from proxy data.",
+        "tags": [
+            "R",
+            "Bayesian",
+            "Paleo"
+        ],
+        "github": "https://github.com/your-username/BTFr",
+        "paper": false,
+        "contributed": true
+    },
+    {
+        "name": "PaleoSTeHM",
+        "description": "A modern, scalable Spatio-Temporal Hierarchical Modeling framework for paleo-environmental data.",
+        "tags": [
+            "Python",
+            "Spatio-Temporal",
+            "Paleo"
+        ],
+        "github": "https://github.com/your-username/PaleoSTeHM",
+        "paper": false,
+        "contributed": true
+    }
+]
