@@ -66,8 +66,8 @@ export default function Navbar() {
         >
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex items-center justify-between h-16 md:h-20">
-                    {/* Logo */}
-                    <a href="#" className="flex items-center gap-2 group">
+                    {/* Logo - links to homepage */}
+                    <a href="/" className="flex items-center gap-2 group">
                         <span className="text-xl font-bold font-mono">
                             <span className="text-ocean-500">{'>'}</span>
                             <span className="text-deep-800 dark:text-white group-hover:text-ocean-400 transition-all duration-300">
