@@ -1,15 +1,32 @@
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import ScrollReveal from './ScrollReveal';
 import software from '../data/software.json';
 
-export default function SoftwareSection() {
+// Show only first 6 on homepage
+const INITIAL_COUNT = 6;
+
+interface SoftwareSectionProps {
+    showAll?: boolean;
+}
+
+export default function SoftwareSection({ showAll = false }: SoftwareSectionProps) {
+    const [expanded, setExpanded] = useState(showAll);
+
     const authored = software.filter((s) => !('contributed' in s && s.contributed));
     const contributed = software.filter((s) => 'contributed' in s && s.contributed);
 
+    const displayedAuthored = expanded ? authored : authored.slice(0, INITIAL_COUNT);
+    const hasMore = authored.length > INITIAL_COUNT;
+
     return (
-        <section id="software" className="py-24 px-4 relative overflow-hidden">
+        <section id="software" className="py-20 px-4 relative overflow-hidden">
             {/* Background */}
             <div className="absolute inset-0 bg-deep-100/30 dark:bg-deep-900/30" />
+            
+            {/* Decorative elements */}
+            <div className="absolute top-20 left-10 w-40 h-40 bg-ocean-500/5 rounded-full blur-3xl pointer-events-none" />
+            <div className="absolute bottom-20 right-10 w-50 h-50 bg-green-500/5 rounded-full blur-3xl pointer-events-none" />
 
             <div className="max-w-6xl mx-auto relative">
                 <ScrollReveal>
@@ -23,11 +40,11 @@ export default function SoftwareSection() {
                 </ScrollReveal>
 
                 {/* Published Software */}
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 mt-14">
-                    {authored.map((sw, i) => (
-                        <ScrollReveal key={sw.name} delay={i * 0.08}>
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 mt-10">
+                    {displayedAuthored.map((sw, i) => (
+                        <ScrollReveal key={sw.name} delay={i * 0.05}>
                             <motion.a
-                                href={sw.github}
+                                href={`/software/${sw.name.toLowerCase().replace(/\s+/g, '-')}`}
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 whileHover={{ y: -6 }}
@@ -46,7 +63,7 @@ export default function SoftwareSection() {
                                             {sw.name}
                                         </h3>
                                     </div>
-                                    <p className="text-sm text-deep-600 dark:text-deep-300 leading-relaxed mb-4">
+                                    <p className="text-sm text-deep-600 dark:text-deep-300 leading-relaxed mb-4 line-clamp-3">
                                         {sw.description}
                                     </p>
                                     <div className="flex flex-wrap gap-1.5 mb-3">
@@ -81,17 +98,50 @@ export default function SoftwareSection() {
                     ))}
                 </div>
 
-                {/* Contributed Software */}
-                {contributed.length > 0 && (
+                {/* Show More button */}
+                {hasMore && !showAll && (
+                    <div className="text-center mt-8">
+                        <button
+                            onClick={() => setExpanded(!expanded)}
+                            className="inline-flex items-center gap-2 px-5 py-2 text-sm text-ocean-500 hover:text-ocean-600 dark:hover:text-ocean-400 font-medium transition-colors"
+                        >
+                            {expanded ? 'Show Less' : `Show More (${authored.length - INITIAL_COUNT} more)`}
+                            <svg 
+                                className={`w-4 h-4 transition-transform ${expanded ? 'rotate-180' : ''}`} 
+                                fill="none" 
+                                stroke="currentColor" 
+                                viewBox="0 0 24 24"
+                            >
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </button>
+                    </div>
+                )}
+
+                {/* Link to full software page */}
+                <div className="text-center mt-4">
+                    <a
+                        href="/software"
+                        className="inline-flex items-center gap-2 px-4 py-2 text-xs text-deep-500 dark:text-deep-400 hover:text-ocean-500 transition-colors"
+                    >
+                        View all software
+                        <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                        </svg>
+                    </a>
+                </div>
+
+                {/* Contributed Software - show on homepage only if expanded */}
+                {contributed.length > 0 && expanded && (
                     <>
                         <ScrollReveal>
-                            <h3 className="text-xl font-bold text-center mt-16 mb-8 text-deep-600 dark:text-deep-300">
+                            <h3 className="text-xl font-bold text-center mt-12 mb-6 text-deep-600 dark:text-deep-300">
                                 Contributed Software <span className="text-sm font-normal text-deep-400">(bug fix & optimization)</span>
                             </h3>
                         </ScrollReveal>
-                        <div className="grid md:grid-cols-2 gap-5 max-w-3xl mx-auto">
+                        <div className="grid md:grid-cols-2 gap-5 max-w-4xl mx-auto">
                             {contributed.map((sw, i) => (
-                                <ScrollReveal key={sw.name} delay={i * 0.1}>
+                                <ScrollReveal key={sw.name} delay={i * 0.05}>
                                     <motion.a
                                         href={sw.github}
                                         target="_blank"

@@ -1,0 +1,50 @@
+---
+name: "Ant-observer"
+description: "Automatic acquisition and autonomous analyses of individual ant species abundance and interactions using computer vision."
+tags: ["Python", "Computer Vision", "Deep Learning"]
+github: "https://github.com/your-username/Ant-observer"
+paper: true
+relatedPapers:
+  - title: "Ant-observer: A new approach for automatic acquisition and autonomous analyses of individual species abundance and interactions"
+    authors: "Hu, J., Bogar, T. A., Gu, Y. F., & Guenard, B."
+    journal: "Ecological Informatics"
+    year: "2024"
+---
+
+# Ant-observer
+
+Ant-observer is a computer vision system designed for automatic acquisition and analysis of ant species abundance and interactions in the field.
+
+## Features
+
+- Automatic ant detection and tracking
+- Species identification using deep learning
+- Interaction analysis between individuals
+- Field-deployable camera trap integration
+- Real-time counting and classification
+
+## Installation
+
+```bash
+pip install ant-observer
+```
+
+## Quick Start
+
+```python
+from ant_observer import Detector
+
+# Initialize detector
+detector = Detector(model='best.pt')
+
+# Process video
+results = detector.process_video('field footage.mp4')
+print(results)
+```
+
+## Use Cases
+
+- Biodiversity monitoring in tropical forests
+- Invasive species detection
+- Community ecology studies
+- Long-term ecological research

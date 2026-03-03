@@ -8,12 +8,16 @@ const posts = (await getCollection("blog"))
 ---
 
 <section id="blog" class="py-24 px-4 relative overflow-hidden">
-  <!-- Background -->
+  <!-- Enhanced Background -->
   <div class="absolute inset-0 bg-deep-100/30 dark:bg-deep-900/30"></div>
   <div
     class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-px bg-linear-to-r from-transparent via-ocean-500/20 to-transparent"
   >
   </div>
+  
+  <!-- Decorative elements -->
+  <div class="absolute top-20 left-10 w-32 h-32 bg-ocean-500/5 rounded-full blur-2xl pointer-events-none"></div>
+  <div class="absolute bottom-20 right-10 w-40 h-40 bg-ocean-500/5 rounded-full blur-2xl pointer-events-none"></div>
 
   <div class="max-w-4xl mx-auto relative">
     <div class="text-center mb-12">

@@ -1,0 +1,49 @@
+---
+name: "CNN-SS-mussel"
+description: "AI-based semantic segmentation of intertidal mussel beds using convolutional neural networks."
+tags: ["Python", "Deep Learning", "Segmentation"]
+github: "https://github.com/your-username/CNN-SS-mussel"
+paper: true
+relatedPapers:
+  - title: "A comparative study on CNN-based semantic segmentation of intertidal mussel beds"
+    authors: "Gu, Y. F., Hu, J., & Williams, G. A."
+    journal: "Ecological Informatics"
+    year: "2023"
+---
+
+# CNN-SS-mussel
+
+Semantic segmentation tool specifically designed for intertidal mussel bed analysis using deep learning.
+
+## Features
+
+- U-Net based architecture
+- Custom data augmentation for marine images
+- High-resolution output
+- Transfer learning support
+- Training dashboard
+
+## Installation
+
+```bash
+pip install cnn-ss-mussel
+```
+
+## Quick Start
+
+```python
+from cnn_ss_mussel import Segmenter
+
+# Initialize segmenter
+segmenter = Segmenter('mussel_model.h5')
+
+# Segment mussel bed
+mask = segmenter.predict('intertidal_image.jpg')
+```
+
+## Applications
+
+- Mussel bed extent mapping
+- Biodiversity assessment
+- Coastal zone management
+- Long-term monitoring

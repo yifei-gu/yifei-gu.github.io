@@ -1,0 +1,48 @@
+---
+name: "Polygon Measurement Tool"
+description: "A Python package for measuring polygons in YOLO format annotation files with UI features and reference scale measurement."
+tags: ["Python", "YOLO", "UI Tool"]
+github: "https://github.com/your-username/polygon-measurement-tool"
+paper: false
+---
+
+# Polygon Measurement Tool
+
+A user-friendly tool for measuring polygons in YOLO format annotations with reference scale support.
+
+## Features
+
+- Support for YOLO polygon format
+- Reference scale calibration
+- Area and perimeter calculation
+- Batch processing
+- Interactive GUI
+- Export to multiple formats
+
+## Installation
+
+```bash
+pip install polygon-measurement-tool
+```
+
+## Quick Start
+
+```python
+from polygon_tool import measure
+
+# Measure polygons
+results = measure('annotations.txt', scale=0.5)
+print(results)
+```
+
+## GUI Usage
+
+```bash
+polygon-tool-gui
+```
+
+This opens an interactive interface for:
+- Loading YOLO annotations
+- Setting reference scale
+- Visualizing measurements
+- Exporting results

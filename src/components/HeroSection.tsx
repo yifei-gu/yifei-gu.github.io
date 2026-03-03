@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 
 const roles = [
     'Ecologist who codes',
@@ -12,28 +12,43 @@ function TypingText() {
     const [roleIndex, setRoleIndex] = useState(0);
     const [text, setText] = useState('');
     const [deleting, setDeleting] = useState(false);
+    const [isPaused, setIsPaused] = useState(false);
+
+    const currentRole = roles[roleIndex];
+
+    const typeText = useCallback(() => {
+        if (isPaused) return;
+        
+        if (!deleting) {
+            // Typing
+            if (text.length < currentRole.length) {
+                setText(currentRole.slice(0, text.length + 1));
+            } else {
+                // Finished typing, pause before deleting
+                setIsPaused(true);
+                setTimeout(() => {
+                    setIsPaused(false);
+                    setDeleting(true);
+                }, 2000);
+            }
+        } else {
+            // Deleting
+            if (text.length > 0) {
+                setText(currentRole.slice(0, text.length - 1));
+            } else {
+                // Finished deleting, move to next role
+                setDeleting(false);
+                setRoleIndex((prev) => (prev + 1) % roles.length);
+            }
+        }
+    }, [text, deleting, currentRole, isPaused]);
 
     useEffect(() => {
-        const current = roles[roleIndex];
-        const timeout = setTimeout(
-            () => {
-                if (!deleting) {
-                    setText(current.slice(0, text.length + 1));
-                    if (text.length + 1 === current.length) {
-                        setTimeout(() => setDeleting(true), 2000);
-                    }
-                } else {
-                    setText(current.slice(0, text.length - 1));
-                    if (text.length === 0) {
-                        setDeleting(false);
-                        setRoleIndex((prev) => (prev + 1) % roles.length);
-                    }
-                }
-            },
-            deleting ? 40 : 80
-        );
-        return () => clearTimeout(timeout);
-    }, [text, deleting, roleIndex]);
+        // Faster, smoother typing
+        const delay = deleting ? 30 : 60;
+        const timer = setTimeout(typeText, delay);
+        return () => clearTimeout(timer);
+    }, [typeText, deleting]);
 
     return (
         <span className="font-mono text-ocean-400">

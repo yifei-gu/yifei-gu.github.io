@@ -46,6 +46,10 @@ export default function ResearchSection() {
             {/* Background gradient */}
             <div className="absolute inset-0 bg-deep-100/30 dark:bg-deep-900/30" />
             <div className="absolute top-1/2 left-0 w-full h-px bg-linear-to-r from-transparent via-ocean-500/20 to-transparent" />
+            
+            {/* Enhanced decorative elements */}
+            <div className="absolute top-10 left-10 w-40 h-40 bg-ocean-500/5 rounded-full blur-3xl pointer-events-none" />
+            <div className="absolute bottom-10 right-10 w-60 h-60 bg-purple-500/5 rounded-full blur-3xl pointer-events-none" />
 
             <div className="max-w-6xl mx-auto relative">
                 <ScrollReveal>

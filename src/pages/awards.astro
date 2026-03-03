@@ -1,0 +1,19 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
+import AwardsSection from "../components/AwardsSection";
+---
+
+<Layout
+  title="Awards & Grants | Yifei Gu"
+  description="Awards, grants, and recognitions received by Yifei Gu for research excellence."
+>
+  <Navbar client:load />
+  
+  <main class="pt-28 pb-16 px-4">
+    <AwardsSection client:visible showAll={true} />
+  </main>
+
+  <Footer client:load />
+</Layout>

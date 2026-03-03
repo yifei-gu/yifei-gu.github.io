@@ -1,0 +1,47 @@
+---
+name: "CardiacDP"
+description: "Automated heart rate data analysis with autocorrelation function (ACF) and a genetic algorithm framework."
+tags: ["Python", "Signal Processing", "Algorithm"]
+github: "https://github.com/your-username/CardiacDP"
+paper: true
+relatedPapers:
+  - title: "An Algorithm Designed for Rapid Automated Cardiac Data Processing: Integrating Autocorrelation, a Genetic Algorithm and a Tracking Index"
+    authors: "Lau, S. L., Wong, A., & Gu, Y. F."
+    journal: "SSRN"
+    year: "2025"
+---
+
+# CardiacDP
+
+Automated heart rate data processing using advanced signal processing and optimization algorithms.
+
+## Features
+
+- Autocorrelation-based peak detection
+- Genetic algorithm optimization
+- Noise robust processing
+- Batch processing support
+- Export to common formats
+
+## Installation
+
+```bash
+pip install cardiacdp
+```
+
+## Quick Start
+
+```python
+from cardiacdp import analyze
+
+# Analyze heart rate data
+results = analyze('ecg_data.csv')
+print(f"Heart rate: {results.bpm} BPM")
+```
+
+## Algorithm
+
+The tool combines:
+1. Autocorrelation function (ACF) for periodicity detection
+2. Genetic algorithm for parameter optimization
+3. Tracking index for quality assessment

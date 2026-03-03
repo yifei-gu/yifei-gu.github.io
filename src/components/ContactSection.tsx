@@ -1,5 +1,7 @@
 import ScrollReveal from './ScrollReveal';
 
+// IMPORTANT: Update these URLs with your actual profiles
+// TODO: Replace the placeholder URLs below with your actual links
 const links = [
   {
     icon: (
@@ -8,7 +10,7 @@ const links = [
       </svg>
     ),
     label: 'GitHub',
-    href: 'https://github.com/your-username', // TODO: replace with actual GitHub URL
+    href: 'https://github.com/YOUR_USERNAME', // TODO: Replace with your GitHub username
     color: 'hover:text-white',
   },
   {
@@ -19,7 +21,7 @@ const links = [
       </svg>
     ),
     label: 'Google Scholar',
-    href: 'https://scholar.google.com/', // TODO: replace with personal Google Scholar profile URL
+    href: 'https://scholar.google.com/citations?user=YOUR_ID', // TODO: Replace with your Google Scholar ID
     color: 'hover:text-blue-500',
   },
   {
@@ -29,7 +31,7 @@ const links = [
       </svg>
     ),
     label: 'Email',
-    href: 'mailto:your.email@hku.hk', // TODO: replace with actual HKU email address
+    href: 'mailto:your.email@hku.hk', // TODO: Replace with your actual email
     color: 'hover:text-ocean-400',
   },
 ];
@@ -78,6 +80,13 @@ export default function ContactSection() {
 
         <ScrollReveal delay={0.3}>
           <div className="mt-12">
+            {/*
+              IMPORTANT: To enable CV download:
+              1. Place your CV PDF file in the /public folder
+              2. Rename it to CV_YifeiGu.pdf (or update the href below)
+              
+              If you don't have a CV yet, you can remove this section.
+            */}
             <a
               href="/CV_YifeiGu.pdf"
               download

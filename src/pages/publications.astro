@@ -1,0 +1,19 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
+import PublicationsSection from "../components/PublicationsSection";
+---
+
+<Layout
+  title="Publications | Yifei Gu"
+  description="Research publications by Yifei Gu - AI for marine science, computer vision, and ecological methods."
+>
+  <Navbar client:load />
+  
+  <main class="pt-28 pb-16 px-4">
+    <PublicationsSection client:visible showAll={true} />
+  </main>
+
+  <Footer client:load />
+</Layout>
