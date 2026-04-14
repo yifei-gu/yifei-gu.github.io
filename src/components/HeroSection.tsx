@@ -18,7 +18,7 @@ function TypingText() {
 
     const typeText = useCallback(() => {
         if (isPaused) return;
-        
+
         if (!deleting) {
             // Typing
             if (text.length < currentRole.length) {

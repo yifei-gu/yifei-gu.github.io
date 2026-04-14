@@ -14,9 +14,9 @@ export default function AboutSection() {
             {/* Enhanced background decoration */}
             <div className="absolute top-0 left-1/4 w-96 h-96 bg-ocean-500/5 dark:bg-ocean-500/5 rounded-full blur-3xl pointer-events-none animate-pulse" />
             <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-ocean-500/5 dark:bg-ocean-500/5 rounded-full blur-3xl pointer-events-none animate-pulse" style={{ animationDelay: '1s' }} />
-            
+
             {/* Grid pattern overlay */}
-            <div className="absolute inset-0 bg-[linear-gradient(rgba(6,182,212,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(6,182,212,0.03)_1px,transparent_1px)] bg-[size:50px_50px] pointer-events-none" />
+            <div className="absolute inset-0 bg-[linear-gradient(rgba(6,182,212,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(6,182,212,0.03)_1px,transparent_1px)] bg-size-[50px_50px] pointer-events-none" />
 
             <div className="max-w-6xl mx-auto relative">
                 <ScrollReveal>
