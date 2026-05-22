@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">
+  <defs>
+    <linearGradient id="bg1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0e7490"/>
+      <stop offset="100%" style="stop-color:#164e63"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#bg1)"/>
+  <text x="400" y="280" text-anchor="middle" fill="#67e8f9" font-family="monospace" font-size="24">3D Point Cloud  Field Sample</text>
+  <text x="400" y="320" text-anchor="middle" fill="#a5f3fc" font-family="sans-serif" font-size="16" opacity="0.8">Replace with your field photo</text>
+  <circle cx="200" cy="400" r="3" fill="#22d3ee" opacity="0.6"/>
+  <circle cx="350" cy="380" r="2" fill="#22d3ee" opacity="0.5"/>
+  <circle cx="500" cy="420" r="4" fill="#22d3ee" opacity="0.7"/>
+  <circle cx="600" cy="390" r="2" fill="#22d3ee" opacity="0.5"/>
+</svg>

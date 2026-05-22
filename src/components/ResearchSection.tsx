@@ -1,5 +1,7 @@
 import { motion } from 'framer-motion';
 import ScrollReveal from './ScrollReveal';
+import MathGridBackground from './MathGridBackground';
+import FormulaTicker from './FormulaTicker';
 
 const researchAreas = [
     {
@@ -43,6 +45,7 @@ const researchAreas = [
 export default function ResearchSection() {
     return (
         <section id="research" className="py-24 px-4 relative overflow-hidden">
+            <MathGridBackground />
             {/* Background gradient */}
             <div className="absolute inset-0 bg-deep-100/30 dark:bg-deep-900/30" />
             <div className="absolute top-1/2 left-0 w-full h-px bg-linear-to-r from-transparent via-ocean-500/20 to-transparent" />
@@ -96,6 +99,7 @@ export default function ResearchSection() {
                         </ScrollReveal>
                     ))}
                 </div>
+                <FormulaTicker />
             </div>
         </section>
     );

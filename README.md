@@ -129,7 +129,7 @@ Update placeholder content in these files:
 | `public/CV_YifeiGu.pdf`      | Add your CV PDF (optional; enables the download button)                 |
 | `astro.config.mjs`           | `site` URL if not using `yifeigu.github.io`                             |
 
-See also [BLOG_GUIDE.md](./BLOG_GUIDE.md) and [DEPLOY_GUIDE.md](./DEPLOY_GUIDE.md).
+See also [BLOG_GUIDE.md](./BLOG_GUIDE.md), [SOFTWARE_GUIDE.md](./SOFTWARE_GUIDE.md), and [DEPLOY_GUIDE.md](./DEPLOY_GUIDE.md).
 
 ## ✏️ How to Edit Content
 
@@ -170,6 +170,8 @@ Edit `src/data/software.json`:
 ```
 
 The `slug` must match the filename in `src/content/software/` (without `.mdx`). Homepage cards read from this JSON; detail pages are authored in MDX.
+
+**Full guide:** [SOFTWARE_GUIDE.md](./SOFTWARE_GUIDE.md) — descriptions (short vs long), gallery images, and new projects.
 
 ### Awards
 
@@ -251,7 +253,9 @@ This project includes automatic deployment via GitHub Actions:
    ```
 3. **Enable GitHub Pages** — Go to Repository Settings → Pages
    - Source: **GitHub Actions**
-4. **Push to main branch** — The workflow will automatically build and deploy
+4. **Push to main branch** — The workflow in `.github/workflows/deploy.yml` builds and deploys
+
+`astro.config.mjs` auto-sets `base` for project sites (e.g. `/yfg_landing`). See [DEPLOY_GUIDE.md](./DEPLOY_GUIDE.md).
 
 ### Manual Deployment
 

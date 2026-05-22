@@ -4,11 +4,23 @@ import react from '@astrojs/react';
 import tailwindcss from '@tailwindcss/vite';
 import mdx from '@astrojs/mdx';
 
+// GitHub Pages: project sites use /repo-name; user/org sites (username.github.io) use /
+const repoName = process.env.GITHUB_REPOSITORY?.split('/')[1];
+const isUserSite =
+  repoName?.endsWith('.github.io') ||
+  process.env.ASTRO_BASE === '/';
+const base =
+  process.env.ASTRO_BASE ??
+  (repoName && !isUserSite ? `/${repoName}` : '/');
+
+const site =
+  process.env.ASTRO_SITE ??
+  (base === '/' ? 'https://yifeigu.github.io' : `https://yifeigu.github.io${base}`);
+
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://yifeigu.github.io',
-  // Uncomment and set base if deploying to a subpath:
-  // base: '/yfg_landing',
+  site,
+  base,
   integrations: [react(), mdx()],
   vite: {
     plugins: [tailwindcss()],

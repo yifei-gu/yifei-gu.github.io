@@ -1,34 +1,53 @@
-import { useRef, useMemo } from 'react';
+import { useRef, useMemo, useEffect, useState } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
 
+function useIsDark() {
+  const [isDark, setIsDark] = useState(true);
+
+  useEffect(() => {
+    const check = () => setIsDark(document.documentElement.classList.contains('dark'));
+    check();
+    const observer = new MutationObserver(check);
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+    return () => observer.disconnect();
+  }, []);
+
+  return isDark;
+}
+
 // Simplified water ripple effect
-function WaterRipples() {
+function WaterRipples({ isDark }: { isDark: boolean }) {
   const mesh = useRef<THREE.Mesh>(null);
   const light = useRef<THREE.PointLight>(null);
 
   const uniforms = useMemo(
     () => ({
       uTime: { value: 0 },
-      uColor1: { value: new THREE.Color('#0e7490') },
-      uColor2: { value: new THREE.Color('#22d3ee') },
-      uColor3: { value: new THREE.Color('#67e8f9') },
+      uColor1: { value: new THREE.Color(isDark ? '#0e7490' : '#0c4a6e') },
+      uColor2: { value: new THREE.Color(isDark ? '#22d3ee' : '#0891b2') },
+      uColor3: { value: new THREE.Color(isDark ? '#67e8f9' : '#06b6d4') },
+      uOpacity: { value: isDark ? 0.15 : 0.35 },
     }),
-    []
+    [isDark]
   );
+
+  useEffect(() => {
+    uniforms.uColor1.value.set(isDark ? '#0e7490' : '#0c4a6e');
+    uniforms.uColor2.value.set(isDark ? '#22d3ee' : '#0891b2');
+    uniforms.uColor3.value.set(isDark ? '#67e8f9' : '#06b6d4');
+    uniforms.uOpacity.value = isDark ? 0.15 : 0.35;
+  }, [isDark, uniforms]);
 
   useFrame((state) => {
     if (!mesh.current) return;
     const time = state.clock.getElapsedTime();
 
-    // Update shader uniforms
     const material = mesh.current.material as THREE.ShaderMaterial;
     material.uniforms.uTime.value = time;
 
-    // Gentle rotation
     mesh.current.rotation.z = time * 0.02;
 
-    // Light movement
     if (light.current) {
       light.current.position.x = Math.sin(time * 0.3) * 3;
       light.current.position.y = Math.cos(time * 0.2) * 2;
@@ -45,7 +64,6 @@ function WaterRipples() {
       
       vec3 pos = position;
       
-      // Create wave patterns
       float wave1 = sin(pos.x * 2.0 + uTime * 0.5) * 0.15;
       float wave2 = sin(pos.y * 1.5 + uTime * 0.3) * 0.15;
       float wave3 = cos(pos.x * 1.0 + pos.y * 1.0 + uTime * 0.4) * 0.1;
@@ -64,27 +82,32 @@ function WaterRipples() {
     uniform vec3 uColor2;
     uniform vec3 uColor3;
     uniform float uTime;
+    uniform float uOpacity;
     
     void main() {
-      // Mix colors based on elevation and UV
       float mixStrength = (vElevation + 0.3) * 1.5;
       mixStrength += sin(vUv.x * 10.0 + uTime) * 0.05;
       
       vec3 color = mix(uColor1, uColor2, mixStrength);
       color = mix(color, uColor3, sin(vUv.y * 8.0 + uTime * 0.5) * 0.3 + 0.3);
       
-      // Add subtle shimmer
       float shimmer = sin(vUv.x * 50.0 + vUv.y * 50.0 + uTime * 2.0) * 0.02;
       color += shimmer;
       
-      gl_FragColor = vec4(color, 0.15 + vElevation * 0.2);
+      gl_FragColor = vec4(color, uOpacity + vElevation * 0.25);
     }
   `;
 
   return (
     <>
-      <pointLight ref={light} color="#22d3ee" intensity={1.5} distance={12} position={[0, 2, 3]} />
-      <ambientLight intensity={0.15} />
+      <pointLight
+        ref={light}
+        color={isDark ? '#22d3ee' : '#0891b2'}
+        intensity={isDark ? 1.5 : 2}
+        distance={12}
+        position={[0, 2, 3]}
+      />
+      <ambientLight intensity={isDark ? 0.15 : 0.25} />
       <mesh ref={mesh} position={[0, -1, -2]} rotation={[-Math.PI / 4, 0, 0]}>
         <planeGeometry args={[15, 10, 64, 64]} />
         <shaderMaterial
@@ -100,8 +123,7 @@ function WaterRipples() {
   );
 }
 
-// Floating particles (simplified, less busy)
-function FloatingParticles({ count = 300 }) {
+function FloatingParticles({ count = 300, isDark }: { count?: number; isDark: boolean }) {
   const mesh = useRef<THREE.Points>(null);
 
   const particles = useMemo(() => {
@@ -119,10 +141,8 @@ function FloatingParticles({ count = 300 }) {
     if (!mesh.current) return;
     const time = state.clock.getElapsedTime();
 
-    // Gentle drift
     mesh.current.rotation.y = time * 0.02;
 
-    // Subtle position animation
     const positions = mesh.current.geometry.attributes.position.array as Float32Array;
     for (let i = 0; i < count; i++) {
       const i3 = i * 3;
@@ -134,35 +154,51 @@ function FloatingParticles({ count = 300 }) {
   return (
     <points ref={mesh}>
       <bufferGeometry>
-        <bufferAttribute
-          attach="attributes-position"
-          args={[particles.positions, 3]}
-        />
+        <bufferAttribute attach="attributes-position" args={[particles.positions, 3]} />
       </bufferGeometry>
       <pointsMaterial
-        size={0.03}
-        color="#67e8f9"
+        size={isDark ? 0.03 : 0.045}
+        color={isDark ? '#67e8f9' : '#0e7490'}
         transparent
-        opacity={0.5}
+        opacity={isDark ? 0.5 : 0.85}
         sizeAttenuation
-        blending={THREE.AdditiveBlending}
+        blending={isDark ? THREE.AdditiveBlending : THREE.NormalBlending}
         depthWrite={false}
       />
     </points>
   );
 }
 
+function SceneContent({ isDark }: { isDark: boolean }) {
+  return (
+    <>
+      <WaterRipples isDark={isDark} />
+      <FloatingParticles count={isDark ? 300 : 350} isDark={isDark} />
+    </>
+  );
+}
+
 export default function OceanScene() {
+  const isDark = useIsDark();
+
   return (
     <div className="absolute inset-0 -z-10">
+      {/* Light-mode contrast veil so particles read against the bright hero */}
+      <div
+        className="absolute inset-0 pointer-events-none transition-opacity duration-300 dark:opacity-0 opacity-100"
+        style={{
+          background:
+            'radial-gradient(ellipse 80% 60% at 50% 40%, rgba(8, 145, 178, 0.12) 0%, transparent 70%), linear-gradient(180deg, rgba(207, 250, 254, 0.5) 0%, rgba(241, 245, 249, 0.3) 100%)',
+        }}
+        aria-hidden
+      />
       <Canvas
         camera={{ position: [0, 0, 6], fov: 50 }}
         dpr={[1, 1.5]}
         gl={{ antialias: true, alpha: true }}
         style={{ background: 'transparent' }}
       >
-        <WaterRipples />
-        <FloatingParticles count={300} />
+        <SceneContent isDark={isDark} />
       </Canvas>
     </div>
   );

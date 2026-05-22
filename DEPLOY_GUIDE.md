@@ -101,7 +101,25 @@ git push origin main
 1. Go to your repository's **Actions** tab
 2. You should see the "Deploy to GitHub Pages" workflow running
 3. Wait for it to complete (usually 1-2 minutes)
-4. Your site will be available at: `https://your-username.github.io/repository-name/`
+4. Your site will be available at:
+   - **Project site** (repo named e.g. `yfg_landing`): `https://your-username.github.io/yfg_landing/`
+   - **User site** (repo named `your-username.github.io`): `https://your-username.github.io/`
+
+### Astro base URL (already configured)
+
+`astro.config.mjs` sets `base` automatically in CI from `GITHUB_REPOSITORY`:
+
+- Repo `username/yfg_landing` → `base: '/yfg_landing'`
+- Repo `username/username.github.io` → `base: '/'`
+
+To override locally or in CI:
+
+```bash
+ASTRO_BASE=/my-repo pnpm build
+ASTRO_SITE=https://your-username.github.io/my-repo pnpm build
+```
+
+After changing repo name or using a custom domain, update `site` in `astro.config.mjs` and the `og:url` meta tag in `src/layouts/Layout.astro`.
 
 ---
 
@@ -205,10 +223,12 @@ git checkout main
 - Check that `gh-pages` branch exists
 - Verify GitHub Pages is enabled in settings
 
-### Broken Links
+### Broken Links / 404 assets
 
-- Update the base URL in `astro.config.mjs` if needed
-- Use relative paths for internal links
+- Confirm `base` in `astro.config.mjs` matches your GitHub Pages URL path
+- For a project site, the URL must include `/repository-name/`
+- Astro rewrites root-absolute paths (`/software/...`) when `base` is set
+- Override with `ASTRO_BASE` if the auto-detected path is wrong
 
 ### Build Failures
 

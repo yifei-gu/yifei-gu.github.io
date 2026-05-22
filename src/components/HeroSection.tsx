@@ -51,9 +51,9 @@ function TypingText() {
     }, [typeText, deleting]);
 
     return (
-        <span className="font-mono text-ocean-400">
+        <span className="font-mono text-ocean-700 dark:text-ocean-400">
             {text}
-            <span className="cursor-blink text-ocean-300">|</span>
+            <span className="cursor-blink text-ocean-600 dark:text-ocean-300">|</span>
         </span>
     );
 }
@@ -82,8 +82,8 @@ export default function HeroSection() {
                             <span className="w-2.5 h-2.5 rounded-full bg-yellow-400/80" />
                             <span className="w-2.5 h-2.5 rounded-full bg-green-400/80" />
                         </span>
-                        <span className="text-sm font-mono text-ocean-500 dark:text-ocean-400 ml-2">
-                            <span className="text-ocean-600 dark:text-ocean-500">$</span> whoami
+                        <span className="text-sm font-mono text-ocean-700 dark:text-ocean-400 ml-2">
+                            <span className="text-ocean-800 dark:text-ocean-500">$</span> whoami
                         </span>
                     </motion.div>
 

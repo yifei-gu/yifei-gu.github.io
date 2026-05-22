@@ -5,14 +5,13 @@ import Footer from "../../components/Footer";
 import SoftwareIndex from "../../components/SoftwareIndex";
 import { getCollection } from "astro:content";
 
-const software = (await getCollection("software"))
-  .sort((a, b) => {
-    // Authored first, then contributed
-    if (a.data.contributed !== b.data.contributed) {
-      return a.data.contributed ? 1 : -1;
-    }
-    return 0;
-  });
+const software = (await getCollection("software")).sort((a, b) => {
+  // Authored first, then contributed
+  if (a.data.contributed !== b.data.contributed) {
+    return a.data.contributed ? 1 : -1;
+  }
+  return 0;
+});
 
 // Get all unique tags
 const allTags = Array.from(new Set(software.flatMap((sw) => sw.data.tags)));

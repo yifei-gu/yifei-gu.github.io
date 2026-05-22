@@ -1,7 +1,7 @@
 import { useState, useMemo } from 'react';
 
 interface SoftwareItem {
-  slug: string;
+  id: string;
   data: {
     name: string;
     description: string;
@@ -75,8 +75,8 @@ export default function SoftwareIndex({ software, allTags }: SoftwareIndexProps)
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 mb-12">
             {authored.map((sw) => (
               <a
-                key={sw.slug}
-                href={`/software/${sw.slug}`}
+                key={sw.id}
+                href={`/software/${sw.id}`}
                 className="group relative glass rounded-xl p-5 block h-full hover:border-ocean-500/40 transition-all"
               >
                 <div className="absolute inset-0 rounded-xl bg-ocean-500/5 dark:bg-ocean-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
@@ -134,8 +134,8 @@ export default function SoftwareIndex({ software, allTags }: SoftwareIndexProps)
           <div className="grid md:grid-cols-2 gap-5 max-w-4xl mx-auto">
             {contributed.map((sw) => (
               <a
-                key={sw.slug}
-                href={`/software/${sw.slug}`}
+                key={sw.id}
+                href={`/software/${sw.id}`}
                 className="group glass rounded-xl p-4 flex items-start gap-3 hover:border-ocean-500/40 transition-all"
               >
                 <div className="w-10 h-10 rounded-lg bg-linear-to-br from-deep-200 to-deep-300 dark:from-deep-700 dark:to-deep-600 flex items-center justify-center text-deep-400 dark:text-deep-500 font-mono text-xs shrink-0 mt-0.5 group-hover:scale-110 transition-transform">
