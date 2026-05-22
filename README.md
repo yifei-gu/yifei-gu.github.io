@@ -14,16 +14,16 @@ A modern, interactive personal academic website built with **Astro**, **React**,
 
 ## 🛠 Tech Stack
 
-| Category | Technology |
-|----------|------------|
-| Framework | [Astro](https://astro.build) |
-| UI Library | [React](https://react.dev) |
-| 3D Graphics | [Three.js](https://threejs.org) / [React Three Fiber](https://docs.pmnd.rs/react-three-fiber) |
-| Styling | [Tailwind CSS](https://tailwindcss.com) |
-| Animations | [Framer Motion](https://www.framer.com/motion/) / [GSAP](https://greensock.com/gsap/) |
-| Blog | [MDX](https://mdxjs.com) |
-| Package Manager | [pnpm](https://pnpm.io) |
-| Deployment | GitHub Pages + GitHub Actions |
+| Category        | Technology                                                                                    |
+| --------------- | --------------------------------------------------------------------------------------------- |
+| Framework       | [Astro](https://astro.build)                                                                  |
+| UI Library      | [React](https://react.dev)                                                                    |
+| 3D Graphics     | [Three.js](https://threejs.org) / [React Three Fiber](https://docs.pmnd.rs/react-three-fiber) |
+| Styling         | [Tailwind CSS](https://tailwindcss.com)                                                       |
+| Animations      | [Framer Motion](https://www.framer.com/motion/) / [GSAP](https://greensock.com/gsap/)         |
+| Blog            | [MDX](https://mdxjs.com)                                                                      |
+| Package Manager | [pnpm](https://pnpm.io)                                                                       |
+| Deployment      | GitHub Pages + GitHub Actions                                                                 |
 
 ## 📁 Project Structure
 
@@ -48,20 +48,29 @@ yfg_landing/
 │   │   ├── PublicationsSection.tsx  # Publications list
 │   │   ├── ResearchSection.tsx       # Research interests
 │   │   ├── ScrollReveal.tsx         # Scroll animation wrapper
+│   │   ├── BlogSection.astro        # Blog preview on homepage
+│   │   ├── SoftwareIndex.tsx        # Full software listing page
 │   │   ├── SoftwareSection.tsx      # Software/projects list
 │   │   └── ThemeToggle.tsx          # Dark/light mode toggle
+│   ├── data/
+│   │   ├── publications.json        # Publications data
+│   │   ├── software.json            # Software/projects data (homepage cards)
+│   │   └── site.ts                  # Contact links & CV toggle
 │   ├── content/
 │   │   ├── blog/                    # MDX blog posts
 │   │   │   ├── hsc3d-release.mdx
 │   │   │   └── sea-cucumber-detection.mdx
+│   │   ├── software/                # MDX software detail pages
 │   │   └── config.ts                # Content collections config
-│   ├── data/
-│   │   ├── publications.json        # Publications data
-│   │   └── software.json            # Software/projects data
 │   ├── layouts/
 │   │   └── Layout.astro             # Base layout component
 │   ├── pages/
 │   │   ├── index.astro              # Home page
+│   │   ├── awards.astro             # Full awards page
+│   │   ├── publications.astro       # Full publications page
+│   │   ├── software/
+│   │   │   ├── index.astro          # Software listing page
+│   │   │   └── [...slug].astro      # Individual software detail page
 │   │   └── blog/
 │   │       ├── [...slug].astro      # Individual blog post page
 │   │       └── index.astro          # Blog listing page
@@ -108,6 +117,20 @@ pnpm preview
 
 The development server will be available at **http://localhost:4321**
 
+### Before You Deploy
+
+Update placeholder content in these files:
+
+| File                         | What to update                                                          |
+| ---------------------------- | ----------------------------------------------------------------------- |
+| `src/data/site.ts`           | Email, Google Scholar URL; set `cvAvailable: true` after adding your CV |
+| `src/data/software.json`     | GitHub URLs for each project                                            |
+| `src/content/software/*.mdx` | GitHub URLs and documentation for detail pages                          |
+| `public/CV_YifeiGu.pdf`      | Add your CV PDF (optional; enables the download button)                 |
+| `astro.config.mjs`           | `site` URL if not using `yifeigu.github.io`                             |
+
+See also [BLOG_GUIDE.md](./BLOG_GUIDE.md) and [DEPLOY_GUIDE.md](./DEPLOY_GUIDE.md).
+
 ## ✏️ How to Edit Content
 
 ### Publications
@@ -137,14 +160,16 @@ Edit `src/data/software.json`:
 [
   {
     "name": "Project Name",
+    "slug": "project-name",
     "description": "Project description",
-    "technologies": ["Python", "PyTorch"],
-    "links": [
-      { "label": "GitHub", "url": "https://github.com/..." }
-    ]
+    "tags": ["Python", "PyTorch"],
+    "github": "https://github.com/...",
+    "paper": true
   }
 ]
 ```
+
+The `slug` must match the filename in `src/content/software/` (without `.mdx`). Homepage cards read from this JSON; detail pages are authored in MDX.
 
 ### Awards
 
@@ -171,17 +196,14 @@ Edit `src/components/ResearchSection.tsx` — modify the research areas.
 
 ### Contact / Social Links
 
-Edit `src/components/ContactSection.tsx` and `src/components/Navbar.tsx` to update:
-- Email address
-- GitHub profile
-- LinkedIn profile
-- Twitter/X
-- Google Scholar
-- Other links
+Edit `src/data/site.ts` to update email, GitHub, and Google Scholar links in one place. The contact section reads from this file.
 
 ### CV / Resume
 
-Place your PDF resume as `public/CV_YifeiGu.pdf` (or update the link in the code).
+1. Place your PDF as `public/CV_YifeiGu.pdf`
+2. Set `cvAvailable: true` in `src/data/site.ts`
+
+The download button is hidden until both steps are done, so visitors never hit a broken link.
 
 ## 📝 Blog
 
@@ -197,7 +219,7 @@ date: 2025-06-15
 tags: ["AI", "Research"]
 ---
 
-Your content here. You can use **Markdown** and even *React components*!
+Your content here. You can use **Markdown** and even _React components_!
 
 ## Section
 
@@ -206,12 +228,12 @@ More content...
 
 ### Blog Frontmatter
 
-| Field | Description | Required |
-|-------|-------------|----------|
-| `title` | Post title | Yes |
-| `description` | Brief description for SEO | Yes |
-| `date` | Publication date (YYYY-MM-DD) | Yes |
-| `tags` | Array of tags for categorization | No |
+| Field         | Description                      | Required |
+| ------------- | -------------------------------- | -------- |
+| `title`       | Post title                       | Yes      |
+| `description` | Brief description for SEO        | Yes      |
+| `date`        | Publication date (YYYY-MM-DD)    | Yes      |
+| `tags`        | Array of tags for categorization | No       |
 
 ## 🌐 Deployment
 
@@ -223,7 +245,7 @@ This project includes automatic deployment via GitHub Actions:
 2. **Update site URL** — Edit `astro.config.mjs`:
    ```js
    export default defineConfig({
-     site: 'https://your-username.github.io',
+     site: "https://your-username.github.io",
      // ...
    });
    ```
@@ -243,13 +265,13 @@ pnpm build
 
 ## 🧞 Commands Reference
 
-| Command | Action |
-|---------|--------|
-| `pnpm install` | Install all dependencies |
-| `pnpm dev` | Start development server |
-| `pnpm build` | Build for production |
+| Command        | Action                           |
+| -------------- | -------------------------------- |
+| `pnpm install` | Install all dependencies         |
+| `pnpm dev`     | Start development server         |
+| `pnpm build`   | Build for production             |
 | `pnpm preview` | Preview production build locally |
-| `pnpm astro` | Run Astro CLI commands |
+| `pnpm astro`   | Run Astro CLI commands           |
 
 ## 📄 License
 

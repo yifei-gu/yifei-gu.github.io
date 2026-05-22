@@ -1,7 +1,6 @@
 import ScrollReveal from './ScrollReveal';
+import { site } from '../data/site';
 
-// IMPORTANT: Update these URLs with your actual profiles
-// TODO: Replace the placeholder URLs below with your actual links
 const links = [
   {
     icon: (
@@ -10,7 +9,8 @@ const links = [
       </svg>
     ),
     label: 'GitHub',
-    href: 'https://github.com/YOUR_USERNAME', // TODO: Replace with your GitHub username
+    href: site.github,
+    external: true,
     color: 'hover:text-white',
   },
   {
@@ -21,7 +21,8 @@ const links = [
       </svg>
     ),
     label: 'Google Scholar',
-    href: 'https://scholar.google.com/citations?user=YOUR_ID', // TODO: Replace with your Google Scholar ID
+    href: site.scholar,
+    external: true,
     color: 'hover:text-blue-500',
   },
   {
@@ -31,7 +32,8 @@ const links = [
       </svg>
     ),
     label: 'Email',
-    href: 'mailto:your.email@hku.hk', // TODO: Replace with your actual email
+    href: `mailto:${site.email}`,
+    external: false,
     color: 'hover:text-ocean-400',
   },
 ];
@@ -61,8 +63,7 @@ export default function ContactSection() {
               <a
                 key={link.label}
                 href={link.href}
-                target="_blank"
-                rel="noopener noreferrer"
+                {...(link.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
                 className="group relative glass rounded-xl p-5 text-deep-500 dark:text-deep-400 transition-all hover:-translate-y-2 hover:shadow-xl hover:shadow-ocean-500/15 hover:border-ocean-500/40 flex flex-col items-center gap-2 min-w-[100px]"
               >
                 {/* Hover glow */}
@@ -78,29 +79,23 @@ export default function ContactSection() {
           </div>
         </ScrollReveal>
 
-        <ScrollReveal delay={0.3}>
-          <div className="mt-12">
-            {/*
-              IMPORTANT: To enable CV download:
-              1. Place your CV PDF file in the /public folder
-              2. Rename it to CV_YifeiGu.pdf (or update the href below)
-              
-              If you don't have a CV yet, you can remove this section.
-            */}
-            <a
-              href="/CV_YifeiGu.pdf"
-              download
-              className="group relative inline-flex items-center gap-2.5 px-7 py-3.5 bg-ocean-500 hover:bg-ocean-400 text-white font-medium rounded-lg transition-all duration-300 hover:shadow-xl hover:shadow-ocean-500/30 hover:-translate-y-1 overflow-hidden"
-            >
-              {/* Button shine effect */}
-              <div className="absolute inset-0 bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
-              <svg className="w-5 h-5 relative z-10 group-hover:translate-y-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-              </svg>
-              <span className="relative z-10">Download CV (PDF)</span>
-            </a>
-          </div>
-        </ScrollReveal>
+        {site.cvAvailable && (
+          <ScrollReveal delay={0.3}>
+            <div className="mt-12">
+              <a
+                href={site.cvPath}
+                download
+                className="group relative inline-flex items-center gap-2.5 px-7 py-3.5 bg-ocean-500 hover:bg-ocean-400 text-white font-medium rounded-lg transition-all duration-300 hover:shadow-xl hover:shadow-ocean-500/30 hover:-translate-y-1 overflow-hidden"
+              >
+                <div className="absolute inset-0 bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
+                <svg className="w-5 h-5 relative z-10 group-hover:translate-y-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+                <span className="relative z-10">Download CV (PDF)</span>
+              </a>
+            </div>
+          </ScrollReveal>
+        )}
       </div>
     </section>
   );

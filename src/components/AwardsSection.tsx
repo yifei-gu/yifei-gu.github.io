@@ -69,7 +69,7 @@ export default function AwardsSection({ showAll = false }: AwardsSectionProps) {
             {/* Background */}
             <div className="absolute inset-0 bg-deep-100/30 dark:bg-deep-900/30" />
             <div className="absolute top-1/2 left-0 w-full h-px bg-linear-to-r from-transparent via-ocean-500/20 to-transparent" />
-            
+
             {/* Decorative elements */}
             <div className="absolute top-20 left-10 w-40 h-40 bg-ocean-500/5 rounded-full blur-3xl pointer-events-none" />
             <div className="absolute bottom-20 right-10 w-50 h-50 bg-amber-500/5 rounded-full blur-3xl pointer-events-none" />
@@ -108,10 +108,13 @@ export default function AwardsSection({ showAll = false }: AwardsSectionProps) {
                                         </span>
                                     )}
                                 </div>
-                                <h3 className="font-semibold text-deep-800 dark:text-white text-sm group-hover:text-ocean-600 dark:group-hover:text-ocean-400 transition-colors line-clamp-1">
+                                <h3 className="font-semibold text-deep-800 dark:text-white text-sm group-hover:text-ocean-600 dark:group-hover:text-ocean-400 transition-colors line-clamp-2">
                                     {award.title}
                                 </h3>
                                 <p className="text-xs text-ocean-500 dark:text-ocean-400 mt-1">{award.org}</p>
+                                <p className="text-xs text-deep-500 dark:text-deep-400 mt-1.5 leading-relaxed line-clamp-2">
+                                    {award.detail}
+                                </p>
                             </motion.div>
                         </ScrollReveal>
                     ))}

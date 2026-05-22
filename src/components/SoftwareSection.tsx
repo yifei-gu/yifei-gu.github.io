@@ -23,7 +23,7 @@ export default function SoftwareSection({ showAll = false }: SoftwareSectionProp
         <section id="software" className="py-20 px-4 relative overflow-hidden">
             {/* Background */}
             <div className="absolute inset-0 bg-deep-100/30 dark:bg-deep-900/30" />
-            
+
             {/* Decorative elements */}
             <div className="absolute top-20 left-10 w-40 h-40 bg-ocean-500/5 rounded-full blur-3xl pointer-events-none" />
             <div className="absolute bottom-20 right-10 w-50 h-50 bg-green-500/5 rounded-full blur-3xl pointer-events-none" />
@@ -42,11 +42,9 @@ export default function SoftwareSection({ showAll = false }: SoftwareSectionProp
                 {/* Published Software */}
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 mt-10">
                     {displayedAuthored.map((sw, i) => (
-                        <ScrollReveal key={sw.name} delay={i * 0.05}>
+                        <ScrollReveal key={sw.slug} delay={i * 0.05}>
                             <motion.a
-                                href={`/software/${sw.name.toLowerCase().replace(/\s+/g, '-')}`}
-                                target="_blank"
-                                rel="noopener noreferrer"
+                                href={`/software/${sw.slug}`}
                                 whileHover={{ y: -6 }}
                                 className="group relative glass rounded-xl p-5 block h-full cursor-pointer"
                             >
@@ -106,10 +104,10 @@ export default function SoftwareSection({ showAll = false }: SoftwareSectionProp
                             className="inline-flex items-center gap-2 px-5 py-2 text-sm text-ocean-500 hover:text-ocean-600 dark:hover:text-ocean-400 font-medium transition-colors"
                         >
                             {expanded ? 'Show Less' : `Show More (${authored.length - INITIAL_COUNT} more)`}
-                            <svg 
-                                className={`w-4 h-4 transition-transform ${expanded ? 'rotate-180' : ''}`} 
-                                fill="none" 
-                                stroke="currentColor" 
+                            <svg
+                                className={`w-4 h-4 transition-transform ${expanded ? 'rotate-180' : ''}`}
+                                fill="none"
+                                stroke="currentColor"
                                 viewBox="0 0 24 24"
                             >
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
@@ -141,11 +139,9 @@ export default function SoftwareSection({ showAll = false }: SoftwareSectionProp
                         </ScrollReveal>
                         <div className="grid md:grid-cols-2 gap-5 max-w-4xl mx-auto">
                             {contributed.map((sw, i) => (
-                                <ScrollReveal key={sw.name} delay={i * 0.05}>
+                                <ScrollReveal key={sw.slug} delay={i * 0.05}>
                                     <motion.a
-                                        href={sw.github}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
+                                        href={`/software/${sw.slug}`}
                                         whileHover={{ y: -3 }}
                                         className="group glass rounded-xl p-4 flex items-start gap-3"
                                     >

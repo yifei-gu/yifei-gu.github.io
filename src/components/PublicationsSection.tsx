@@ -119,17 +119,17 @@ export default function PublicationsSection({ showAll = false }: PublicationsSec
                 </div>
 
                 {/* Show More / View All button */}
-                {hasMore && !filter && !showAll && (
+                {hasMore && !showAll && (
                     <div className="text-center mt-6">
                         <button
                             onClick={() => setExpanded(!expanded)}
                             className="inline-flex items-center gap-2 px-5 py-2 text-sm text-ocean-500 hover:text-ocean-600 dark:hover:text-ocean-400 font-medium transition-colors"
                         >
                             {expanded ? 'Show Less' : `Show More (${filtered.length - INITIAL_COUNT} more)`}
-                            <svg 
-                                className={`w-4 h-4 transition-transform ${expanded ? 'rotate-180' : ''}`} 
-                                fill="none" 
-                                stroke="currentColor" 
+                            <svg
+                                className={`w-4 h-4 transition-transform ${expanded ? 'rotate-180' : ''}`}
+                                fill="none"
+                                stroke="currentColor"
                                 viewBox="0 0 24 24"
                             >
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />

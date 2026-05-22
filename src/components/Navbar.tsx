@@ -3,13 +3,13 @@ import { motion, AnimatePresence } from 'framer-motion';
 import ThemeToggle from './ThemeToggle';
 
 const navLinks = [
-    { label: 'About', href: '#about' },
-    { label: 'Research', href: '#research' },
-    { label: 'Publications', href: '#publications' },
-    { label: 'Software', href: '#software' },
-    { label: 'Awards', href: '#awards' },
-    { label: 'Blog', href: '#blog' },
-    { label: 'Contact', href: '#contact' },
+    { label: 'About', href: '/#about', id: 'about' },
+    { label: 'Research', href: '/#research', id: 'research' },
+    { label: 'Publications', href: '/#publications', id: 'publications' },
+    { label: 'Software', href: '/#software', id: 'software' },
+    { label: 'Awards', href: '/#awards', id: 'awards' },
+    { label: 'Blog', href: '/#blog', id: 'blog' },
+    { label: 'Contact', href: '/#contact', id: 'contact' },
 ];
 
 export default function Navbar() {
@@ -31,7 +31,7 @@ export default function Navbar() {
 
     // Track active section on scroll
     useEffect(() => {
-        const sections = navLinks.map(link => link.href.slice(1));
+        const sections = navLinks.map((link) => link.id);
 
         const handleScroll = () => {
             const scrollPosition = window.scrollY + 100;
@@ -80,7 +80,7 @@ export default function Navbar() {
                     {/* Desktop Nav */}
                     <div className="hidden md:flex items-center gap-0.5">
                         {navLinks.map((link) => {
-                            const isActive = activeSection === link.href.slice(1);
+                            const isActive = activeSection === link.id;
                             return (
                                 <a
                                     key={link.href}
@@ -143,7 +143,7 @@ export default function Navbar() {
                     >
                         <div className="px-4 py-3 space-y-1">
                             {navLinks.map((link, index) => {
-                                const isActive = activeSection === link.href.slice(1);
+                                const isActive = activeSection === link.id;
                                 return (
                                     <motion.a
                                         key={link.href}
