@@ -127,7 +127,7 @@ Update placeholder content in these files:
 | `src/data/software.json`     | GitHub URLs for each project                                            |
 | `src/content/software/*.mdx` | GitHub URLs and documentation for detail pages                          |
 | `public/CV_YifeiGu.pdf`      | Add your CV PDF (optional; enables the download button)                 |
-| `astro.config.mjs`           | `site` URL if not using `yifeigu.github.io`                             |
+| `astro.config.mjs`           | `site` URL if not using `yifei-gu.github.io`                            |
 
 See also [BLOG_GUIDE.md](./BLOG_GUIDE.md), [SOFTWARE_GUIDE.md](./SOFTWARE_GUIDE.md), and [DEPLOY_GUIDE.md](./DEPLOY_GUIDE.md).
 

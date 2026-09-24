@@ -15,7 +15,7 @@ const base =
 
 const site =
   process.env.ASTRO_SITE ??
-  (base === '/' ? 'https://yifeigu.github.io' : `https://yifeigu.github.io${base}`);
+  (base === '/' ? 'https://yifei-gu.github.io' : `https://yifei-gu.github.io${base}`);
 
 // https://astro.build/config
 export default defineConfig({
