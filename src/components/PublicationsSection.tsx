@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import ScrollReveal from './ScrollReveal';
 import publications from '../data/publications.json';
+import { withBase } from '../utils/base';
 
 const allTags = Array.from(new Set(publications.flatMap((p) => p.tags)));
 
@@ -83,7 +84,7 @@ export default function PublicationsSection({ showAll = false }: PublicationsSec
                                 <div className="flex items-start justify-between gap-3">
                                     <div className="flex-1 min-w-0">
                                         <a
-                                            href={`https://scholar.google.com/scholar?q=${encodeURIComponent(pub.title)}`}
+                                            href={'url' in pub && pub.url ? pub.url : `https://scholar.google.com/scholar?q=${encodeURIComponent(pub.title)}`}
                                             target="_blank"
                                             rel="noopener noreferrer"
                                             className="font-semibold text-deep-800 dark:text-white group-hover:text-ocean-600 dark:group-hover:text-ocean-400 transition-colors text-sm leading-snug hover:underline underline-offset-2 decoration-ocean-500/40 line-clamp-2"
@@ -141,7 +142,7 @@ export default function PublicationsSection({ showAll = false }: PublicationsSec
                 {/* Link to full publications page */}
                 <div className="text-center mt-4">
                     <a
-                        href="/publications"
+                        href={withBase('/publications')}
                         className="inline-flex items-center gap-2 px-4 py-2 text-xs text-deep-500 dark:text-deep-400 hover:text-ocean-500 transition-colors"
                     >
                         View all publications

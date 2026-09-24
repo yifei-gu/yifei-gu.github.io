@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import ScrollReveal from './ScrollReveal';
 import software from '../data/software.json';
+import { withBase } from '../utils/base';
 
 // Show only first 6 on homepage
 const INITIAL_COUNT = 6;
@@ -44,7 +45,7 @@ export default function SoftwareSection({ showAll = false }: SoftwareSectionProp
                     {displayedAuthored.map((sw, i) => (
                         <ScrollReveal key={sw.slug} delay={i * 0.05}>
                             <motion.a
-                                href={`/software/${sw.slug}`}
+                                href={withBase(`/software/${sw.slug}`)}
                                 whileHover={{ y: -6 }}
                                 className="group relative glass rounded-xl p-5 block h-full cursor-pointer"
                             >
@@ -119,7 +120,7 @@ export default function SoftwareSection({ showAll = false }: SoftwareSectionProp
                 {/* Link to full software page */}
                 <div className="text-center mt-4">
                     <a
-                        href="/software"
+                        href={withBase('/software')}
                         className="inline-flex items-center gap-2 px-4 py-2 text-xs text-deep-500 dark:text-deep-400 hover:text-ocean-500 transition-colors"
                     >
                         View all software
@@ -141,7 +142,7 @@ export default function SoftwareSection({ showAll = false }: SoftwareSectionProp
                             {contributed.map((sw, i) => (
                                 <ScrollReveal key={sw.slug} delay={i * 0.05}>
                                     <motion.a
-                                        href={`/software/${sw.slug}`}
+                                        href={withBase(`/software/${sw.slug}`)}
                                         whileHover={{ y: -3 }}
                                         className="group glass rounded-xl p-4 flex items-start gap-3"
                                     >

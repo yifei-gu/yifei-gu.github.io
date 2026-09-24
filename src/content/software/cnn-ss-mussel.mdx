@@ -1,49 +1,30 @@
 ---
 name: "CNN-SS-mussel"
-description: "AI-based semantic segmentation of intertidal mussel beds using convolutional neural networks."
+description: "Code for a comparative study of CNN semantic segmentation on intertidal mussel beds."
 tags: ["Python", "Deep Learning", "Segmentation"]
-github: "https://github.com/your-username/CNN-SS-mussel"
+github: "https://github.com/Vicellken/CNN-SS-mussel"
 paper: true
 relatedPapers:
   - title: "A comparative study on CNN-based semantic segmentation of intertidal mussel beds"
     authors: "Gu, Y. F., Hu, J., & Williams, G. A."
-    journal: "Ecological Informatics"
+    journal: "Ecological Informatics, 75, 102116"
     year: "2023"
+    url: "https://doi.org/10.1016/j.ecoinf.2023.102116"
 ---
 
 # CNN-SS-mussel
 
-Semantic segmentation tool specifically designed for intertidal mussel bed analysis using deep learning.
+This repository is the code for a comparison of convolutional networks that segment intertidal mussel beds. It is a research codebase, not a packaged library: there is no `cnn-ss-mussel` install and no single `Segmenter` class to import.
 
-## Features
+The README sets up the stack as follows:
 
-- U-Net based architecture
-- Custom data augmentation for marine images
-- High-resolution output
-- Transfer learning support
-- Training dashboard
+- Conda environment with Python 3.8 (3.7 if a dependency fails)
+- PaddlePaddle, with a GPU build when CUDA is available and a CPU build otherwise
+- PaddleX 2.1.0 for the segmentation API
+- EISeg (PaddleSeg) for interactive image labels
 
-## Installation
+Follow `README.md` in the repository for the exact install commands, dataset layout, and training entry points. Model names and scores belong in the paper; they are not restated here because a machine-readable abstract was not available from OpenAlex, Crossref, or Semantic Scholar when this page was written.
 
-```bash
-pip install cnn-ss-mussel
-```
+## Citation
 
-## Quick Start
-
-```python
-from cnn_ss_mussel import Segmenter
-
-# Initialize segmenter
-segmenter = Segmenter('mussel_model.h5')
-
-# Segment mussel bed
-mask = segmenter.predict('intertidal_image.jpg')
-```
-
-## Applications
-
-- Mussel bed extent mapping
-- Biodiversity assessment
-- Coastal zone management
-- Long-term monitoring
+> Gu, Y. F., Hu, J., & Williams, G. A. (2023). A comparative study on CNN-based semantic segmentation of intertidal mussel beds. *Ecological Informatics*, 75, 102116. https://doi.org/10.1016/j.ecoinf.2023.102116

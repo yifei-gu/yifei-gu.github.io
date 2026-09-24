@@ -1,15 +1,16 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import ThemeToggle from './ThemeToggle';
+import { isHomePath, withBase } from '../utils/base';
 
 const navLinks = [
-    { label: 'About', href: '/#about', id: 'about' },
-    { label: 'Research', href: '/#research', id: 'research' },
-    { label: 'Publications', href: '/#publications', id: 'publications' },
-    { label: 'Software', href: '/#software', id: 'software' },
-    { label: 'Awards', href: '/#awards', id: 'awards' },
-    { label: 'Blog', href: '/#blog', id: 'blog' },
-    { label: 'Contact', href: '/#contact', id: 'contact' },
+    { label: 'About', href: withBase('/#about'), id: 'about' },
+    { label: 'Research', href: withBase('/#research'), id: 'research' },
+    { label: 'Publications', href: withBase('/#publications'), id: 'publications' },
+    { label: 'Software', href: withBase('/#software'), id: 'software' },
+    { label: 'Awards', href: withBase('/#awards'), id: 'awards' },
+    { label: 'Blog', href: withBase('/#blog'), id: 'blog' },
+    { label: 'Contact', href: withBase('/#contact'), id: 'contact' },
 ];
 
 export default function Navbar() {
@@ -29,8 +30,10 @@ export default function Navbar() {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
-    // Track active section on scroll
+    // Track active section on scroll (homepage sections only)
     useEffect(() => {
+        if (!isHomePath()) return;
+
         const sections = navLinks.map((link) => link.id);
 
         const handleScroll = () => {
@@ -67,7 +70,7 @@ export default function Navbar() {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex items-center justify-between h-16 md:h-20">
                     {/* Logo - links to homepage */}
-                    <a href="/" className="flex items-center gap-2 group">
+                    <a href={withBase('/')} className="flex items-center gap-2 group">
                         <span className="text-xl font-bold font-mono">
                             <span className="text-ocean-500">{'>'}</span>
                             <span className="text-deep-800 dark:text-white group-hover:text-ocean-400 transition-all duration-300">

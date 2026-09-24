@@ -189,12 +189,11 @@ html:not(.dark) .section-gradient::before {
   transform: translateY(-2px);
 }
 
-/* Smooth transitions for theme changes — intentionally limited to
-   color/bg/border so that Framer Motion's transform/opacity animations
-   are not overridden by CSS transitions */
-*,
-*::before,
-*::after {
+/* Smooth transitions for theme changes — limited to interactive elements
+   so Framer Motion's transform/opacity animations are not overridden. */
+body,
+a,
+button {
   transition-property: background-color, border-color, color, fill, stroke;
   transition-duration: 0.2s;
   transition-timing-function: ease;
@@ -321,5 +320,16 @@ a:not([href^="#"]):not([download]):not([target="_blank"]):hover {
   }
   100% {
     transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }

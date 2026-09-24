@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react';
+import { withBase } from '../utils/base';
 
 interface SoftwareItem {
   id: string;
@@ -76,7 +77,7 @@ export default function SoftwareIndex({ software, allTags }: SoftwareIndexProps)
             {authored.map((sw) => (
               <a
                 key={sw.id}
-                href={`/software/${sw.id}`}
+                href={withBase(`/software/${sw.id}`)}
                 className="group relative glass rounded-xl p-5 block h-full hover:border-ocean-500/40 transition-all"
               >
                 <div className="absolute inset-0 rounded-xl bg-ocean-500/5 dark:bg-ocean-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
@@ -135,7 +136,7 @@ export default function SoftwareIndex({ software, allTags }: SoftwareIndexProps)
             {contributed.map((sw) => (
               <a
                 key={sw.id}
-                href={`/software/${sw.id}`}
+                href={withBase(`/software/${sw.id}`)}
                 className="group glass rounded-xl p-4 flex items-start gap-3 hover:border-ocean-500/40 transition-all"
               >
                 <div className="w-10 h-10 rounded-lg bg-linear-to-br from-deep-200 to-deep-300 dark:from-deep-700 dark:to-deep-600 flex items-center justify-center text-deep-400 dark:text-deep-500 font-mono text-xs shrink-0 mt-0.5 group-hover:scale-110 transition-transform">

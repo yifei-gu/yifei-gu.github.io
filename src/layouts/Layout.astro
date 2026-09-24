@@ -1,5 +1,6 @@
 ---
 import "../styles/global.css";
+import { withBase } from "../utils/base";
 
 interface Props {
   title?: string;
@@ -10,14 +11,19 @@ const {
   title = "Yifei Gu | Ecologist & Scientific Software Developer",
   description = "Post-doctoral Fellow at HKU — bridging ecology and AI through research software. Specializing in marine science, computer vision, and 3D habitat analysis.",
 } = Astro.props;
+
+const canonical = Astro.url.href;
+const ogImage = new URL(withBase("favicon.svg"), Astro.site ?? Astro.url).href;
+const icon = withBase("favicon.svg");
+const favicon = withBase("favicon.ico");
 ---
 
 <!doctype html>
 <html lang="en" class="dark">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="icon" href="/favicon.ico" />
+    <link rel="icon" type="image/svg+xml" href={icon} />
+    <link rel="icon" href={favicon} />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
     <meta name="generator" content={Astro.generator} />
@@ -26,8 +32,8 @@ const {
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://yifeigu.github.io" />
-    <meta property="og:image" content="https://yifeigu.github.io/favicon.svg" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />

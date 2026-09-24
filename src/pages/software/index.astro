@@ -24,8 +24,8 @@ const allTags = Array.from(new Set(software.flatMap((sw) => sw.data.tags)));
   <Navbar client:load />
 
   <main class="pt-28 pb-16 px-4">
-    <SoftwareIndex client:load software={software} allTags={allTags} />
+    <SoftwareIndex client:visible software={software} allTags={allTags} />
   </main>
 
-  <Footer client:load />
+  <Footer />
 </Layout>

@@ -109,7 +109,7 @@ function WaterRipples({ isDark }: { isDark: boolean }) {
       />
       <ambientLight intensity={isDark ? 0.15 : 0.25} />
       <mesh ref={mesh} position={[0, -1, -2]} rotation={[-Math.PI / 4, 0, 0]}>
-        <planeGeometry args={[15, 10, 64, 64]} />
+        <planeGeometry args={[15, 10, 32, 32]} />
         <shaderMaterial
           vertexShader={vertexShader}
           fragmentShader={fragmentShader}
@@ -137,33 +137,63 @@ function FloatingParticles({ count = 300, isDark }: { count?: number; isDark: bo
     return { positions };
   }, [count]);
 
+  const uniforms = useMemo(
+    () => ({
+      uTime: { value: 0 },
+      uColor: { value: new THREE.Color(isDark ? '#67e8f9' : '#0e7490') },
+      uOpacity: { value: isDark ? 0.5 : 0.85 },
+      uSize: { value: isDark ? 16 : 24 },
+    }),
+    // Colors are updated in the effect below so the material keeps one uniform object.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    []
+  );
+
+  useEffect(() => {
+    uniforms.uColor.value.set(isDark ? '#67e8f9' : '#0e7490');
+    uniforms.uOpacity.value = isDark ? 0.5 : 0.85;
+    uniforms.uSize.value = isDark ? 16 : 24;
+  }, [isDark, uniforms]);
+
   useFrame((state) => {
-    if (!mesh.current) return;
-    const time = state.clock.getElapsedTime();
-
-    mesh.current.rotation.y = time * 0.02;
-
-    const positions = mesh.current.geometry.attributes.position.array as Float32Array;
-    for (let i = 0; i < count; i++) {
-      const i3 = i * 3;
-      positions[i3 + 1] += Math.sin(time + i) * 0.0005;
-    }
-    mesh.current.geometry.attributes.position.needsUpdate = true;
+    uniforms.uTime.value = state.clock.getElapsedTime();
+    if (mesh.current) mesh.current.rotation.y = uniforms.uTime.value * 0.02;
   });
+
+  const vertexShader = `
+    uniform float uTime;
+    uniform float uSize;
+    void main() {
+      vec3 pos = position;
+      pos.y += sin(uTime * 0.6 + position.x * 3.0 + position.z) * 0.08;
+      vec4 mv = modelViewMatrix * vec4(pos, 1.0);
+      gl_Position = projectionMatrix * mv;
+      gl_PointSize = uSize * (1.0 / max(-mv.z, 0.1));
+    }
+  `;
+
+  const fragmentShader = `
+    uniform vec3 uColor;
+    uniform float uOpacity;
+    void main() {
+      float d = length(gl_PointCoord - vec2(0.5));
+      if (d > 0.5) discard;
+      gl_FragColor = vec4(uColor, uOpacity);
+    }
+  `;
 
   return (
     <points ref={mesh}>
       <bufferGeometry>
         <bufferAttribute attach="attributes-position" args={[particles.positions, 3]} />
       </bufferGeometry>
-      <pointsMaterial
-        size={isDark ? 0.03 : 0.045}
-        color={isDark ? '#67e8f9' : '#0e7490'}
+      <shaderMaterial
+        vertexShader={vertexShader}
+        fragmentShader={fragmentShader}
+        uniforms={uniforms}
         transparent
-        opacity={isDark ? 0.5 : 0.85}
-        sizeAttenuation
-        blending={isDark ? THREE.AdditiveBlending : THREE.NormalBlending}
         depthWrite={false}
+        blending={isDark ? THREE.AdditiveBlending : THREE.NormalBlending}
       />
     </points>
   );
@@ -180,6 +210,22 @@ function SceneContent({ isDark }: { isDark: boolean }) {
 
 export default function OceanScene() {
   const isDark = useIsDark();
+  const [allowMotion, setAllowMotion] = useState(false);
+  const [frameloop, setFrameloop] = useState<'always' | 'never'>('always');
+
+  useEffect(() => {
+    const media = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const syncMotion = () => setAllowMotion(!media.matches);
+    const syncVisibility = () => setFrameloop(document.hidden ? 'never' : 'always');
+    syncMotion();
+    syncVisibility();
+    media.addEventListener('change', syncMotion);
+    document.addEventListener('visibilitychange', syncVisibility);
+    return () => {
+      media.removeEventListener('change', syncMotion);
+      document.removeEventListener('visibilitychange', syncVisibility);
+    };
+  }, []);
 
   return (
     <div className="absolute inset-0 -z-10">
@@ -192,14 +238,17 @@ export default function OceanScene() {
         }}
         aria-hidden
       />
-      <Canvas
-        camera={{ position: [0, 0, 6], fov: 50 }}
-        dpr={[1, 1.5]}
-        gl={{ antialias: true, alpha: true }}
-        style={{ background: 'transparent' }}
-      >
-        <SceneContent isDark={isDark} />
-      </Canvas>
+      {allowMotion && (
+        <Canvas
+          camera={{ position: [0, 0, 6], fov: 50 }}
+          dpr={[1, 1.5]}
+          frameloop={frameloop}
+          gl={{ antialias: true, alpha: true }}
+          style={{ background: 'transparent' }}
+        >
+          <SceneContent isDark={isDark} />
+        </Canvas>
+      )}
     </div>
   );
 }

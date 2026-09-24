@@ -1,6 +1,6 @@
 ---
 title: "Automated Sea Cucumber Detection in Turbid Waters"
-description: "How we built an explainable AI system for detecting holothurians in challenging subtidal marine environments."
+description: "A YOLOv8 and Eigen-CAM pipeline for detecting holothurians in turbid subtidal imagery, published in Ecological Informatics."
 date: 2025-01-20
 tags: ["AI", "computer vision", "marine ecology", "YOLOv8"]
 software: "holothurian-yolov8"
@@ -8,26 +8,18 @@ software: "holothurian-yolov8"
 
 # Detecting Sea Cucumbers with Explainable AI
 
-Monitoring marine organisms in turbid subtidal habitats is incredibly challenging. Poor visibility, complex backgrounds, and variable lighting make traditional survey methods unreliable — and manual analysis of underwater imagery painstakingly slow.
+Deposit-feeding sea cucumbers recycle nutrients, but counting them over large areas is hard. Occlusion, low light, and turbid water all make a detector trained in one place fail somewhere else.
 
-## The Challenge
+## What we built
 
-Sea cucumbers (holothurians) play vital ecological roles in marine ecosystems, yet monitoring their populations in turbid waters has remained difficult. We set out to build an automated detection system that could:
+We used sea cucumbers as the example species for a YOLOv8 survey pipeline. Images came from a GoPro Hero9 Black under a range of turbid conditions. Photometric augmentation was aimed at small datasets, and it is what let the model generalize to sites that were held out of training. Eigen-CAM (an eigenvalue class activation map) draws the perceptual field on those unseen frames so a biologist can see whether the box is sitting on the animal.
 
-1. **Work in low-visibility conditions** — turbid water with poor contrast
-2. **Provide explainable results** — not just a black box, but insights into _what_ the model sees
-3. **Be practical** for field researchers to use
+## Result
 
-## Our Approach
+The detection model reached 94.1% mean average precision. The augmentation step is what carried that accuracy onto unseen sites despite the limited training set.
 
-We developed a custom pipeline combining YOLOv8 object detection with explainability tools to provide transparent, interpretable results. The system not only detects sea cucumbers but also highlights the features it uses for detection.
+Code, including the Eigen-CAM examples, is in [holothurian-YOLOv8](https://github.com/Vicellken/holothurian-YOLOv8). It is a conda and Ultralytics project, not a packaged `pip install`.
 
-## Key Results
+## Read the paper
 
-- High detection accuracy even in turbid conditions
-- Explainable AI visualizations showing model reasoning
-- Practical tool ready for deployment in monitoring programs
-
-## Read More
-
-> Chu, C., Gu, Y. F.*, Wong, A., & Russell, B. D. (2025). Automated detection of sea cucumbers in turbid subtidal marine habitats: An explainable approach. *Ecological Informatics*. Q1, IF: 7.3
+> Chu, C., Gu, Y. F., Wong, A., & Russell, B. D. (2025). Automated detection of sea cucumbers in turbid subtidal marine habitats: An explainable approach. *Ecological Informatics*, 103342. https://doi.org/10.1016/j.ecoinf.2025.103342

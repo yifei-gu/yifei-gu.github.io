@@ -1,10 +1,23 @@
 [
     {
+        "authors": "Lau, S. L. Y., Wong, A. T. C., Gu, Y. F., & Hui, T. Y.",
+        "year": 2026,
+        "title": "CardiacDP: An R package for rapid automated cardiac data processing, integrating autocorrelation, a genetic algorithm, and a tracking index",
+        "journal": "Limnology and Oceanography: Methods, e70055",
+        "badge": "Article",
+        "url": "https://doi.org/10.1002/lom3.70055",
+        "tags": [
+            "algorithm",
+            "signal-processing"
+        ]
+    },
+    {
         "authors": "Law, Y. K., Gu, Y. F., Liu, S., Song, G., Chan, A. H., Tse, C. M., ... & Wu, J.",
-        "year": 2025,
+        "year": 2026,
         "title": "Improving forest age estimation to understand subtropical forest regrowth dynamics using deep learning image segmentation of time-series historical aerial photographs",
-        "journal": "Remote Sensing in Ecology and Conservation",
+        "journal": "Remote Sensing in Ecology and Conservation, 12(3), 349-367",
         "badge": "Q1, 5-year IF 5.4",
+        "url": "https://doi.org/10.1002/rse2.70042",
         "tags": [
             "deep-learning",
             "remote-sensing",
@@ -12,11 +25,24 @@
         ]
     },
     {
+        "authors": "Qin, Y., Li, T., Nordsvan, A. R., Lin, Y., Peng, D., Gu, Y., Yu, H. K. Y., Tian, L., Nahm, W. H., et al.",
+        "year": 2026,
+        "title": "Modern anthropogenic subsidence rivals deglacial meltwater pulse rates in the Bohai and Yellow Seas",
+        "journal": "Communications Earth & Environment",
+        "badge": "Article",
+        "url": "https://doi.org/10.1038/s43247-026-03889-y",
+        "tags": [
+            "paleo",
+            "sea-level"
+        ]
+    },
+    {
         "authors": "Chu, C., Gu, Y. F.*, Wong, A., & Russell, B. D.",
         "year": 2025,
         "title": "Automated detection of sea cucumbers in turbid subtidal marine habitats: An explainable approach",
-        "journal": "Ecological Informatics",
+        "journal": "Ecological Informatics, 103342",
         "badge": "Q1, IF 7.3",
+        "url": "https://doi.org/10.1016/j.ecoinf.2025.103342",
         "tags": [
             "deep-learning",
             "marine",
@@ -25,33 +51,46 @@
         "corresponding": true
     },
     {
-        "authors": "Lau, S. L., Wong, A., & Gu, Y. F.",
+        "authors": "Khan, N., Gu, Y. F., Creel, R., Nordsvan, A., Mukherjee, U., & Yu, H.",
         "year": 2025,
-        "title": "An Algorithm Designed for Rapid Automated Cardiac Data Processing: Integrating Autocorrelation, a Genetic Algorithm and a Tracking Index",
-        "journal": "SSRN",
-        "badge": "Preprint",
-        "tags": [
-            "algorithm",
-            "signal-processing"
-        ]
-    },
-    {
-        "authors": "Yu, H., Mukherjee, U., Li, T., Lau, J., Strattman, K., Gu, Y.F., ... & Khan, N.",
-        "year": 2025,
-        "title": "Ancient oysters provide far-field sea-level constraints on ice melt timing and sources during the early–mid Holocene climate transition",
-        "journal": "Preprint",
-        "badge": "Preprint",
+        "title": "HOLSEA Datahub: An Open-Source Web Portal for Global Relative Sea-Level Data since the Last Glacial Maximum",
+        "journal": "AGU Fall Meeting Abstracts, PP51B-06",
+        "badge": "Abstract",
         "tags": [
             "paleo",
             "sea-level"
         ]
     },
     {
-        "authors": "Hu, J., Bogar, T. A., Gu, Y. F., & Guenard, B.",
+        "authors": "Yu, H., Mukherjee, U., Li, T., Lau, J., Strattman, K., Gu, Y.F., ... & Khan, N.",
+        "year": 2025,
+        "title": "Ancient oysters provide far-field sea-level constraints on ice melt timing and sources during the early-mid Holocene climate transition",
+        "journal": "Preprint",
+        "badge": "Preprint",
+        "url": "https://doi.org/10.21203/rs.3.rs-8143807/v1",
+        "tags": [
+            "paleo",
+            "sea-level"
+        ]
+    },
+    {
+        "authors": "Gu, Y.",
+        "year": 2025,
+        "title": "Interpreting complex ecological patterns and processes across different scales using artificial intelligence",
+        "journal": "HKU Theses Online (HKUTO)",
+        "badge": "Thesis",
+        "tags": [
+            "deep-learning",
+            "ecology"
+        ]
+    },
+    {
+        "authors": "Hu, J., Bogar, T. A., Gu, Y. F., & Guénard, B.",
         "year": 2024,
         "title": "Ant-observer: A new approach for automatic acquisition and autonomous analyses of individual species abundance and interactions",
         "journal": "Ecological Informatics, 82, 102752",
         "badge": "Q1, IF 7.3",
+        "url": "https://doi.org/10.1016/j.ecoinf.2024.102752",
         "tags": [
             "computer-vision",
             "ecology",
@@ -62,8 +101,9 @@
         "authors": "Gu, Y. F.*, Hu, J., Han, K., Lau, J. W., & Williams, G. A.",
         "year": 2024,
         "title": "HSC3D: A Python package to quantify three-dimensional habitat structural complexity",
-        "journal": "Methods in Ecology and Evolution",
+        "journal": "Methods in Ecology and Evolution, 15(4), 639-646",
         "badge": "Q1, 5-year IF 9.3",
+        "url": "https://doi.org/10.1111/2041-210X.14305",
         "tags": [
             "3D",
             "ecology",
@@ -75,8 +115,9 @@
         "authors": "Gu, Y. F., Hu, J., & Williams, G. A.",
         "year": 2023,
         "title": "A comparative study on CNN-based semantic segmentation of intertidal mussel beds",
-        "journal": "Ecological Informatics",
+        "journal": "Ecological Informatics, 75, 102116",
         "badge": "Q1, IF 7.3",
+        "url": "https://doi.org/10.1016/j.ecoinf.2023.102116",
         "tags": [
             "deep-learning",
             "marine",

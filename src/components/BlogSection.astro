@@ -1,5 +1,6 @@
 ---
 import { getCollection } from "astro:content";
+import { withBase } from "../utils/base";
 
 const posts = (await getCollection("blog"))
   .filter((post) => !post.data.draft)
@@ -35,7 +36,7 @@ const posts = (await getCollection("blog"))
       {
         posts.map((post) => (
           <a
-            href={`/blog/${post.id}`}
+            href={withBase(`/blog/${post.id}`)}
             class="block glass rounded-xl p-6 hover:border-ocean-500/40 transition-all hover:-translate-y-0.5 hover:shadow-lg hover:shadow-ocean-500/10 group"
           >
             <div class="flex items-center gap-3 mb-3 flex-wrap">
@@ -78,7 +79,7 @@ const posts = (await getCollection("blog"))
       posts.length > 0 && (
         <div class="text-center mt-10">
           <a
-            href="/blog"
+            href={withBase("/blog")}
             class="inline-flex items-center gap-2 px-6 py-3 border-2 border-ocean-500/30 dark:border-ocean-500/50 text-ocean-600 dark:text-ocean-400 hover:border-ocean-500 hover:bg-ocean-500/10 font-medium rounded-lg transition-all duration-300 hover:-translate-y-1 group"
           >
             View All Posts

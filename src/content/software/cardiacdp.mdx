@@ -1,47 +1,48 @@
 ---
 name: "CardiacDP"
-description: "Automated heart rate data analysis with autocorrelation function (ACF) and a genetic algorithm framework."
-tags: ["Python", "Signal Processing", "Algorithm"]
-github: "https://github.com/your-username/CardiacDP"
+description: "An R package for heart-rate time series: autocorrelation, a genetic algorithm, and a tracking index."
+tags: ["R", "Signal Processing", "Algorithm"]
+github: "https://github.com/Vicellken/CardiacDP"
 paper: true
 relatedPapers:
-  - title: "An Algorithm Designed for Rapid Automated Cardiac Data Processing: Integrating Autocorrelation, a Genetic Algorithm and a Tracking Index"
-    authors: "Lau, S. L., Wong, A., & Gu, Y. F."
-    journal: "SSRN"
-    year: "2025"
+  - title: "CardiacDP: An R package for rapid automated cardiac data processing, integrating autocorrelation, a genetic algorithm, and a tracking index"
+    authors: "Lau, S. L. Y., Wong, A. T. C., Gu, Y. F., & Hui, T. Y."
+    journal: "Limnology and Oceanography: Methods, e70055"
+    year: "2026"
+    url: "https://doi.org/10.1002/lom3.70055"
 ---
 
 # CardiacDP
 
-Automated heart rate data processing using advanced signal processing and optimization algorithms.
+CardiacDP reads cardiac recordings and estimates average heart rate per analysis interval. Heartbeats are found with the autocorrelation function. A genetic algorithm searches that autocorrelation so noise is dropped and more of the record is used. A tracking index looks back at earlier time points when the waveform is irregular.
 
-## Features
+The journal article compared the algorithm with manual rates for 33 marine invertebrates from nine species of gastropods, bivalves, and crustaceans. Mean data utilization was above 90%, and the mean absolute percentage error was 3%. The method does not assume a fixed waveform, so the same code can be tried on other periodic series such as valvometry, acoustics, or movement.
 
-- Autocorrelation-based peak detection
-- Genetic algorithm optimization
-- Noise robust processing
-- Batch processing support
-- Export to common formats
+An earlier preprint of the algorithm is on SSRN (5153081). The version to cite is the 2026 paper in *Limnology and Oceanography: Methods*.
 
 ## Installation
 
-```bash
-pip install cardiacdp
+```r
+install.packages("CardiacDP")
+
+# or the GitHub sources
+devtools::install_github("Vicellken/CardiacDP")
 ```
 
-## Quick Start
+## Quick start
 
-```python
-from cardiacdp import analyze
+`computeHR()` returns average heart rate. If you pass a zip of raw files, `collatedata()` runs first. Nothing is written unless `save_outputs` is TRUE.
 
-# Analyze heart rate data
-results = analyze('ecg_data.csv')
-print(f"Heart rate: {results.bpm} BPM")
+```r
+library(CardiacDP)
+
+output <- computeHR(
+  file_path = "collated_heart_rate.csv",
+  save_outputs = TRUE,
+  verbose = TRUE
+)
 ```
 
-## Algorithm
+## Citation
 
-The tool combines:
-1. Autocorrelation function (ACF) for periodicity detection
-2. Genetic algorithm for parameter optimization
-3. Tracking index for quality assessment
+> Lau, S. L. Y., Wong, A. T. C., Gu, Y. F., & Hui, T. Y. (2026). CardiacDP: An R package for rapid automated cardiac data processing, integrating autocorrelation, a genetic algorithm, and a tracking index. *Limnology and Oceanography: Methods*, e70055. https://doi.org/10.1002/lom3.70055

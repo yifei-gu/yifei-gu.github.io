@@ -3,13 +3,16 @@ import Layout from "../../layouts/Layout.astro";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import { getCollection, render } from "astro:content";
+import { withBase } from "../../utils/base";
 
 export async function getStaticPaths() {
   const posts = await getCollection("blog");
-  return posts.map((post) => ({
-    params: { slug: post.id },
-    props: post,
-  }));
+  return posts
+    .filter((post) => !post.data.draft)
+    .map((post) => ({
+      params: { slug: post.id },
+      props: post,
+    }));
 }
 
 const post = Astro.props;
@@ -25,7 +28,7 @@ const { Content } = await render(post);
   <main class="pt-28 pb-24 px-4">
     <article class="max-w-3xl mx-auto">
       <a
-        href="/blog"
+        href={withBase("/blog")}
         class="inline-flex items-center gap-1 text-sm text-ocean-500 hover:text-ocean-600 mb-8 group"
       >
         <svg
@@ -82,5 +85,5 @@ const { Content } = await render(post);
     </article>
   </main>
 
-  <Footer client:load />
+  <Footer />
 </Layout>

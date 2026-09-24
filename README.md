@@ -5,7 +5,7 @@ A modern, interactive personal academic website built with **Astro**, **React**,
 ## ✨ Features
 
 - 🌊 **3D Ocean Scene** — Three.js / React Three Fiber
-- 🎬 **Scroll Animations** — Framer Motion & GSAP
+- 🎬 **Scroll Animations** — Framer Motion
 - 🌙 **Dark / Light Mode** — Theme toggle support
 - 📝 **MDX Blog System** — Write blogs in Markdown + JSX
 - 📊 **Data-driven Sections** — Publications and software from JSON
@@ -20,7 +20,7 @@ A modern, interactive personal academic website built with **Astro**, **React**,
 | UI Library      | [React](https://react.dev)                                                                    |
 | 3D Graphics     | [Three.js](https://threejs.org) / [React Three Fiber](https://docs.pmnd.rs/react-three-fiber) |
 | Styling         | [Tailwind CSS](https://tailwindcss.com)                                                       |
-| Animations      | [Framer Motion](https://www.framer.com/motion/) / [GSAP](https://greensock.com/gsap/)         |
+| Animations      | [Framer Motion](https://www.framer.com/motion/)                                                |
 | Blog            | [MDX](https://mdxjs.com)                                                                      |
 | Package Manager | [pnpm](https://pnpm.io)                                                                       |
 | Deployment      | GitHub Pages + GitHub Actions                                                                 |

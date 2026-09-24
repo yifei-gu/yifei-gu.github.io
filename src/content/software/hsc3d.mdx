@@ -1,70 +1,61 @@
 ---
 name: "HSC3D"
-description: "A Python package to quantify three-dimensional habitat structural complexity from 3D point clouds."
+description: "A Python package to quantify three-dimensional habitat structural complexity from photogrammetry point clouds."
 tags: ["Python", "3D", "Ecology", "Habitat"]
-github: "https://github.com/your-username/HSC3D"
+github: "https://github.com/Vicellken/HSC3D"
 paper: true
 relatedPapers:
   - title: "HSC3D: A Python package to quantify three-dimensional habitat structural complexity"
     authors: "Gu, Y. F.*, Hu, J., Han, K., Lau, J. W., & Williams, G. A."
-    journal: "Methods in Ecology and Evolution"
+    journal: "Methods in Ecology and Evolution, 15(4), 639-646"
     year: "2024"
+    url: "https://doi.org/10.1111/2041-210X.14305"
 gallery:
   - src: "/software/hsc3d/field-sample-1.svg"
-    alt: "3D point cloud from field survey"
-    caption: "Field point cloud sample (replace with your photo)"
+    alt: "Example 3D point cloud from a field survey"
+    caption: "Example field point cloud"
   - src: "/software/hsc3d/complexity-map.svg"
-    alt: "Habitat structural complexity map"
-    caption: "Complexity metrics visualization"
+    alt: "Habitat structural complexity visualization"
+    caption: "Complexity visualization"
   - src: "/software/hsc3d/visualization.svg"
-    alt: "HSC3D software visualization output"
-    caption: "Package visualization output"
+    alt: "HSC3D plotting output"
+    caption: "Package plotting output"
 ---
 
-# HSC3D - 3D Habitat Structural Complexity
+# HSC3D
 
-HSC3D is a Python package designed to help ecologists quantify the three-dimensional structural complexity of habitats from 3D point cloud data.
+HSC3D (version 0.2.0 in the paper) quantifies habitat structural complexity from photogrammetry point clouds. Point clouds keep more of the structure organisms actually experience than 2.5D rasters such as DEMs, DSMs, and DTMs. The package includes plotting functions so the calculations can be checked visually.
 
-## Features
-
-- Easy-to-use API for processing point cloud data
-- Multiple complexity metrics (CBD, VCD, QBR, etc.)
-- Support for various 3D file formats (.ply, .pcd, .xyz)
-- Visualization tools for results
-- Integration with popular 3D processing libraries
+The published case study compares structural complexity created by two intertidal ecosystem engineers, mussels and oysters.
 
 ## Installation
 
 ```bash
-pip install hsc3d
+pip install HSC3D
 ```
 
-## Quick Start
+## Quick start
+
+Volume metrics are off by default so the object loads faster. `compute_all()` and `plot_all()` run the implemented metrics and their figures.
 
 ```python
-import hsc3d
+from HSC3D import HSC3D
 
-# Load point cloud
-cloud = hsc3d.load("habitat.ply")
-
-# Calculate complexity metrics
-metrics = hsc3d.analyze(cloud)
-print(metrics)
-
-# Visualize results
-hsc3d.visualize(cloud, metrics)
+hsc3d = HSC3D("path/to/your/pointcloud.ply")
+hsc3d.compute_all()
+hsc3d.plot_all()
 ```
 
-## Use Cases
+Pass `volume=True` to include convex-hull and alpha-shape volumes. Either volume metric can be turned off on its own:
 
-HSC3D is particularly useful for:
-- Marine ecology studies (coral reefs, kelp forests)
-- Terrestrial ecology (forest structure analysis)
-- Urban ecology (green infrastructure assessment)
-- Any habitat where 3D structure matters
+```python
+hsc3d = HSC3D(
+    "path/to/your/pointcloud.ply",
+    volume=True,
+    compute_alpha_shape=False,
+)
+```
 
 ## Citation
 
-If you use HSC3D in your research, please cite:
-
-> Gu, Y. F., Hu, J., Han, K., Lau, J. W., & Williams, G. A. (2024). HSC3D: A Python package to quantify three-dimensional habitat structural complexity. *Methods in Ecology and Evolution*.
+> Gu, Y. F., Hu, J., Han, K., Lau, J. W., & Williams, G. A. (2024). HSC3D: A Python package to quantify three-dimensional habitat structural complexity. *Methods in Ecology and Evolution*, 15(4), 639-646. https://doi.org/10.1111/2041-210X.14305

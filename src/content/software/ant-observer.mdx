@@ -1,50 +1,30 @@
 ---
 name: "Ant-observer"
-description: "Automatic acquisition and autonomous analyses of individual ant species abundance and interactions using computer vision."
-tags: ["Python", "Computer Vision", "Deep Learning"]
-github: "https://github.com/your-username/Ant-observer"
+description: "A camera and GUI workflow that counts ants, measures speed, and records interactions from field video."
+tags: ["Computer Vision", "Ecology", "GUI"]
+github: "https://github.com/Vicellken/Ant-Observer"
 paper: true
 relatedPapers:
   - title: "Ant-observer: A new approach for automatic acquisition and autonomous analyses of individual species abundance and interactions"
-    authors: "Hu, J., Bogar, T. A., Gu, Y. F., & Guenard, B."
-    journal: "Ecological Informatics"
+    authors: "Hu, J., Bogar, T. A., Gu, Y. F., & Guénard, B."
+    journal: "Ecological Informatics, 82, 102752"
     year: "2024"
+    url: "https://doi.org/10.1016/j.ecoinf.2024.102752"
 ---
 
 # Ant-observer
 
-Ant-observer is a computer vision system designed for automatic acquisition and analysis of ant species abundance and interactions in the field.
+Ant-observer pairs consumer-grade cameras with a desktop program for bait experiments. Manual photos and direct counts miss how abundance and interactions change through a trial. The software has a graphical interface for collecting video and for analysing it afterwards.
 
-## Features
+From each video it can:
 
-- Automatic ant detection and tracking
-- Species identification using deep learning
-- Interaction analysis between individuals
-- Field-deployable camera trap integration
-- Real-time counting and classification
+1. Count species abundance in a frame
+2. Calculate species speed
+3. Detect interactions between ants
+4. Count subcastes of a species on the bait
 
-## Installation
+The paper reports ten in situ trials in Hong Kong, each 1 to 1.5 hours, and the variables recovered from them: resource discovery time, nestmate recruitment rate, and interspecific interactions. A handbook and an example dataset are linked from the repository README. This is not a `pip` package: download the project zip and start `Ant-Observer.exe`.
 
-```bash
-pip install ant-observer
-```
+## Citation
 
-## Quick Start
-
-```python
-from ant_observer import Detector
-
-# Initialize detector
-detector = Detector(model='best.pt')
-
-# Process video
-results = detector.process_video('field footage.mp4')
-print(results)
-```
-
-## Use Cases
-
-- Biodiversity monitoring in tropical forests
-- Invasive species detection
-- Community ecology studies
-- Long-term ecological research
+> Hu, J., Bogar, T. A., Gu, Y. F., & Guénard, B. (2024). Ant-observer: A new approach for automatic acquisition and autonomous analyses of individual species abundance and interactions. *Ecological Informatics*, 82, 102752. https://doi.org/10.1016/j.ecoinf.2024.102752

@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState, useCallback, useRef } from 'react';
 
 const roles = [
     'Ecologist who codes',
@@ -15,18 +15,24 @@ function TypingText() {
     const [isPaused, setIsPaused] = useState(false);
 
     const currentRole = roles[roleIndex];
+    const pauseTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+    useEffect(() => {
+        return () => {
+            if (pauseTimer.current) clearTimeout(pauseTimer.current);
+        };
+    }, []);
 
     const typeText = useCallback(() => {
         if (isPaused) return;
 
         if (!deleting) {
-            // Typing
             if (text.length < currentRole.length) {
                 setText(currentRole.slice(0, text.length + 1));
             } else {
-                // Finished typing, pause before deleting
                 setIsPaused(true);
-                setTimeout(() => {
+                pauseTimer.current = setTimeout(() => {
+                    pauseTimer.current = null;
                     setIsPaused(false);
                     setDeleting(true);
                 }, 2000);

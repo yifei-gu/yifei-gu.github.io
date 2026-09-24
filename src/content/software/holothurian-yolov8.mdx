@@ -1,49 +1,35 @@
 ---
 name: "holothurian-YOLOv8"
-description: "Subtidal detection of holothurians in turbid marine habitats using photodetection and deep learning."
+description: "YOLOv8 detection of sea cucumbers in turbid subtidal habitats, with Eigen-CAM explanations."
 tags: ["Python", "YOLOv8", "Marine"]
-github: "https://github.com/your-username/holothurian-YOLOv8"
+github: "https://github.com/Vicellken/holothurian-YOLOv8"
 paper: true
 relatedPapers:
   - title: "Automated detection of sea cucumbers in turbid subtidal marine habitats: An explainable approach"
     authors: "Chu, C., Gu, Y. F.*, Wong, A., & Russell, B. D."
-    journal: "Ecological Informatics"
+    journal: "Ecological Informatics, 103342"
     year: "2025"
+    url: "https://doi.org/10.1016/j.ecoinf.2025.103342"
 ---
 
 # holothurian-YOLOv8
 
-A YOLOv8-based detection system for identifying sea cucumbers (holothurians) in challenging underwater environments.
+This repository is the code for a YOLOv8 pipeline that detects sea cucumbers in turbid subtidal imagery. Photos were taken with a consumer waterproof camera (GoPro Hero9 Black). Photometric augmentation is used so a small training set still generalizes to unseen sites. Eigen-CAM shows the regions the model uses on images it was not trained on.
 
-## Features
+On the reported test, mean average precision was 94.1%.
 
-- Optimized for turbid water conditions
-- Explainable AI visualizations
-- Real-time detection capabilities
-- Custom training pipeline
-- Export to various formats
+## Setup
 
-## Installation
+The project is not a pip package. The README uses a conda environment and Ultralytics:
 
 ```bash
-pip install holothurian-yolov8
+conda create -n yolo python=3.11 -y
+conda activate yolo
+pip install ultralytics
 ```
 
-## Quick Start
+Install a PyTorch build that matches the machine, then use the `EigenCAM` and `utils` folders in the repository for explanations and file handling.
 
-```python
-from holothurian import Detector
+## Citation
 
-# Load pre-trained model
-detector = Detector('holothurian-yolov8.pt')
-
-# Detect in image
-results = detector.detect('underwater_image.jpg')
-print(f"Found {len(results)} holothurians")
-```
-
-## Model Performance
-
-- 95% mAP on turbid water datasets
-- Handles various lighting conditions
-- Real-time processing at 30 FPS
+> Chu, C., Gu, Y. F., Wong, A., & Russell, B. D. (2025). Automated detection of sea cucumbers in turbid subtidal marine habitats: An explainable approach. *Ecological Informatics*, 103342. https://doi.org/10.1016/j.ecoinf.2025.103342

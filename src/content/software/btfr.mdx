@@ -1,44 +1,37 @@
 ---
 name: "BTFr"
-description: "Run Bayesian Transfer Function to reconstruct past environmental conditions from proxy data."
+description: "Bayesian transfer functions for reconstructing past conditions from biological proxies. Requires JAGS."
 tags: ["R", "Bayesian", "Paleo"]
-github: "https://github.com/your-username/BTFr"
+github: "https://github.com/Vicellken/BTFr"
 paper: false
 contributed: true
 ---
 
-# BTFr (Bayesian Transfer Function)
+# BTFr
 
-A package for reconstructing past environmental conditions using Bayesian transfer functions.
+BTFr fits Bayesian transfer functions in R. The public package is installed from the upstream repository. My [fork](https://github.com/Vicellken/BTFr) is where contributed fixes live. The fork README documents optional multi-core MCMC and cross-validation; set `parallel = FALSE` to keep the original single-core behaviour.
 
-## Features
+This package is not one of the papers on my Google Scholar profile.
 
-- Modern Bayesian implementation
-- Transfer function for paleo-proxies
-- Uncertainty quantification
-- Cross-validation tools
-- Visualization suite
+## Requirements
+
+Install [JAGS](https://sourceforge.net/projects/mcmc-jags/) before the R package.
 
 ## Installation
 
 ```r
-# Install from GitHub
-devtools::install_github("your-username/BTFr")
+devtools::install_github("ncahill89/BTFr")
+library(BTFr)
 ```
 
-## Quick Start
+## Quick start
 
 ```r
-library(BTFr)
-
-# Run transfer function
-results <- btfr(reconstruction = proxy_data, 
-                training = training_set)
-                
-# Plot results
-plot(results)
+modern_mod <- run_modern(
+  modern_elevation = NJ_modern_elevation,
+  modern_species = NJ_modern_species,
+  n_cores = 4
+)
 ```
 
-## Contribution
-
-This is a contributed package. I contributed bug fixes and performance optimizations.
+The upstream vignette is linked from the repository README.

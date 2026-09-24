@@ -1,45 +1,32 @@
 ---
 name: "PaleoSTeHM"
-description: "A modern, scalable Spatio-Temporal Hierarchical Modeling framework for paleo-environmental data."
+description: "Notebooks for spatio-temporal hierarchical modeling of paleo-environmental data, built on Pyro."
 tags: ["Python", "Spatio-Temporal", "Paleo"]
-github: "https://github.com/your-username/PaleoSTeHM"
-paper: false
+github: "https://github.com/Vicellken/PaleoSTeHM"
+paper: true
 contributed: true
+relatedPapers:
+  - title: "PaleoSTeHM v1.0: a modern, scalable spatiotemporal hierarchical modeling framework for paleo-environmental data"
+    authors: "Lin, Y., Kopp, R. E., Reedy, A., Turilli, M., Jha, S., & Ashe, E. L."
+    journal: "Geoscientific Model Development"
+    year: "2025"
+    url: "https://doi.org/10.5194/gmd-18-2609-2025"
 ---
 
 # PaleoSTeHM
 
-A modern, scalable framework for Spatio-Temporal Hierarchical Modeling of paleo-environmental data.
+PaleoSTeHM is a set of Jupyter notebooks for spatio-temporal hierarchical models of paleo-environmental data. The API sits on [Pyro](https://pyro.ai/) and PyTorch, so models can use autodiff and GPUs. Tutorials and the project site are at [paleostehm.org](https://paleostehm.org). There is no `palalostehm` package and no `PaleoModel.fit()` entry point; start from the notebooks in the repository.
 
-## Features
+I contributed fixes on [this fork](https://github.com/Vicellken/PaleoSTeHM). The framework paper below is the project citation. I am not an author on it.
 
-- Hierarchical Bayesian modeling
-- Spatio-temporal interpolation
-- Large-scale data support
-- Parallel processing
-- Integration with common paleodata formats
+## Related sea-level work on my Scholar profile
 
-## Installation
+These papers are separate from the PaleoSTeHM software paper:
 
-```bash
-pip install palalostehm
-```
+- Khan, N., Gu, Y. F., Creel, R., Nordsvan, A., Mukherjee, U., & Yu, H. (2025). HOLSEA Datahub: An open-source web portal for global relative sea-level data since the Last Glacial Maximum. *AGU Fall Meeting Abstracts*, PP51B-06.
+- Yu, H., Mukherjee, U., Li, T., Lau, J., Strattman, K., Gu, Y. F., et al. (2025). Ancient oysters provide far-field sea-level constraints on ice melt timing and sources during the early-mid Holocene climate transition. Preprint. https://doi.org/10.21203/rs.3.rs-8143807/v1
+- Qin, Y., Li, T., Nordsvan, A. R., Lin, Y., Peng, D., Gu, Y., et al. (2026). Modern anthropogenic subsidence rivals deglacial meltwater pulse rates in the Bohai and Yellow Seas. *Communications Earth & Environment*. https://doi.org/10.1038/s43247-026-03889-y
 
-## Quick Start
+## Citation for the software
 
-```python
-from palalostehm import PaleoModel
-
-# Initialize model
-model = PaleoModel(training_data)
-
-# Fit model
-results = model.fit()
-
-# Reconstruct
-reconstruction = model.reconstruct(new_locations)
-```
-
-## Contribution
-
-This is a contributed package. I contributed optimization improvements and bug fixes.
+> Lin, Y., Kopp, R. E., Reedy, A., Turilli, M., Jha, S., & Ashe, E. L. (2025). PaleoSTeHM v1.0: a modern, scalable spatiotemporal hierarchical modeling framework for paleo-environmental data. *Geoscientific Model Development*. https://doi.org/10.5194/gmd-18-2609-2025

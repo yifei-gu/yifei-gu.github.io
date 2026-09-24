@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import ScrollReveal from './ScrollReveal';
+import { withBase } from '../utils/base';
 
 const awards = [
     {
@@ -124,7 +125,7 @@ export default function AwardsSection({ showAll = false }: AwardsSectionProps) {
                 {hasMore && (
                     <div className="text-center mt-6">
                         <a
-                            href="/awards"
+                            href={withBase('/awards')}
                             className="inline-flex items-center gap-2 px-4 py-2 text-xs text-deep-500 dark:text-deep-400 hover:text-ocean-500 transition-colors"
                         >
                             View all ({awards.length} total)

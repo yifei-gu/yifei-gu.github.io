@@ -1,5 +1,6 @@
 import ScrollReveal from './ScrollReveal';
 import { site } from '../data/site';
+import { withBase } from '../utils/base';
 
 const links = [
   {
@@ -83,7 +84,7 @@ export default function ContactSection() {
           <ScrollReveal delay={0.3}>
             <div className="mt-12">
               <a
-                href={site.cvPath}
+                href={withBase(site.cvPath)}
                 download
                 className="group relative inline-flex items-center gap-2.5 px-7 py-3.5 bg-ocean-500 hover:bg-ocean-400 text-white font-medium rounded-lg transition-all duration-300 hover:shadow-xl hover:shadow-ocean-500/30 hover:-translate-y-1 overflow-hidden"
               >

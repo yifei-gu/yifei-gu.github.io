@@ -2,99 +2,99 @@
     {
         "name": "HSC3D",
         "slug": "hsc3d",
-        "description": "A Python package to quantify three-dimensional habitat structural complexity from 3D point clouds.",
+        "description": "A Python package to quantify three-dimensional habitat structural complexity from photogrammetry point clouds.",
         "tags": [
             "Python",
             "3D",
             "Ecology"
         ],
-        "github": "https://github.com/your-username/HSC3D",
+        "github": "https://github.com/Vicellken/HSC3D",
         "paper": true
     },
     {
         "name": "Ant-observer",
         "slug": "ant-observer",
-        "description": "Automatic acquisition and autonomous analyses of individual ant species abundance and interactions using computer vision.",
+        "description": "A camera and GUI workflow that counts ants, measures speed, and records interactions from field video.",
         "tags": [
-            "Python",
             "Computer Vision",
-            "Deep Learning"
+            "Ecology",
+            "GUI"
         ],
-        "github": "https://github.com/your-username/Ant-observer",
+        "github": "https://github.com/Vicellken/Ant-Observer",
         "paper": true
     },
     {
         "name": "holothurian-YOLOv8",
         "slug": "holothurian-yolov8",
-        "description": "Subtidal detection of holothurians in turbid marine habitats using photodetection and deep learning.",
+        "description": "YOLOv8 detection of sea cucumbers in turbid subtidal habitats, with Eigen-CAM explanations.",
         "tags": [
             "Python",
             "YOLOv8",
             "Marine"
         ],
-        "github": "https://github.com/your-username/holothurian-YOLOv8",
+        "github": "https://github.com/Vicellken/holothurian-YOLOv8",
         "paper": true
     },
     {
         "name": "CardiacDP",
         "slug": "cardiacdp",
-        "description": "Automated heart rate data analysis with autocorrelation function (ACF) and a genetic algorithm framework.",
+        "description": "An R package for heart-rate time series: autocorrelation, a genetic algorithm, and a tracking index.",
         "tags": [
-            "Python",
+            "R",
             "Signal Processing",
             "Algorithm"
         ],
-        "github": "https://github.com/your-username/CardiacDP",
+        "github": "https://github.com/Vicellken/CardiacDP",
         "paper": true
     },
     {
         "name": "CNN-SS-mussel",
         "slug": "cnn-ss-mussel",
-        "description": "AI-based semantic segmentation of intertidal mussel beds using convolutional neural networks.",
+        "description": "Code for a comparative study of CNN semantic segmentation on intertidal mussel beds.",
         "tags": [
             "Python",
             "Deep Learning",
             "Segmentation"
         ],
-        "github": "https://github.com/your-username/CNN-SS-mussel",
+        "github": "https://github.com/Vicellken/CNN-SS-mussel",
         "paper": true
     },
     {
         "name": "Polygon Measurement Tool",
         "slug": "polygon-measurement-tool",
-        "description": "A Python package for measuring polygons in YOLO format annotation files with UI features and reference scale measurement.",
+        "description": "A Python tool for measuring polygons in YOLO-format annotation files, including a reference scale.",
         "tags": [
             "Python",
             "YOLO",
             "UI Tool"
         ],
-        "github": "https://github.com/your-username/polygon-measurement-tool",
+        "github": "",
         "paper": false
     },
     {
         "name": "BTFr",
         "slug": "btfr",
-        "description": "Run Bayesian Transfer Function to reconstruct past environmental conditions from proxy data.",
+        "description": "Bayesian transfer functions for reconstructing past conditions from biological proxies. Requires JAGS.",
         "tags": [
             "R",
             "Bayesian",
             "Paleo"
         ],
-        "github": "https://github.com/your-username/BTFr",
+        "github": "https://github.com/Vicellken/BTFr",
         "paper": false,
         "contributed": true
     },
     {
         "name": "PaleoSTeHM",
         "slug": "paleostehm",
-        "description": "A modern, scalable Spatio-Temporal Hierarchical Modeling framework for paleo-environmental data.",
+        "description": "Notebooks for spatio-temporal hierarchical modeling of paleo-environmental data, built on Pyro.",
         "tags": [
             "Python",
             "Spatio-Temporal",
             "Paleo"
         ],
-        "github": "https://github.com/your-username/PaleoSTeHM",
-        "paper": false,
+        "github": "https://github.com/Vicellken/PaleoSTeHM",
+        "paper": true,
         "contributed": true
     }
 ]
